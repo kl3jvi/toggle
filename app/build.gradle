@@ -5,7 +5,6 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
-    id 'com.google.gms.google-services'
     id 'com.google.secrets_gradle_plugin' version("0.4")
 }
 
@@ -43,9 +42,8 @@ android {
 dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    def fireAuth = "21.0.1"
-    implementation "com.google.firebase:firebase-auth:$fireAuth"
-    def navigationComponentVersion = "2.4.0-rc01"
+
+    def navigationComponentVersion = "2.5.0-alpha01"
     implementation "androidx.navigation:navigation-runtime-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationComponentVersion"
@@ -66,7 +64,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
 
-    def fragmentVersion = "1.4.0"
+    def fragmentVersion = "1.4.1"
     implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
     // by viewModels() delegate provider
 
@@ -127,5 +125,8 @@ dependencies {
 
     def paginationVersion = "3.1.0"
     implementation "androidx.paging:paging-runtime-ktx:$paginationVersion"
+
+    def introVersion = "6.2.0"
+    implementation "com.github.AppIntro:AppIntro:$introVersion"
 
 }
