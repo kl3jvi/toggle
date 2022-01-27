@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_first_slide.xml" value="0.1215" />
         <entry key="app/src/main/res/layout/activity_app_intro.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/layout/first_slider.xml" value="0.375" />
         <entry key="app/src/main/res/layout/intro_fragment.xml" value="0.24270833333333333" />
       </map>
     </option>

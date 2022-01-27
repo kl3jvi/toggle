@@ -3,6 +3,7 @@ package com.toggle.ui.activities
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
+import com.github.appintro.AppIntroCustomLayoutFragment
 import com.github.appintro.AppIntroFragment
 import com.toggle.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,14 +17,7 @@ class AppIntroActivity : AppIntro() {
         applicationContext
 
         addSlide(
-            AppIntroFragment.createInstance(
-                title = "The title of your slide",
-                description = "A description that will be shown on the bottom",
-                imageDrawable = R.drawable.ic_first_slide,
-                titleColorRes = R.color.primaryTextColor,
-                descriptionColorRes = R.color.secondaryTextColor,
-                backgroundColorRes = R.color.white,
-            )
+            AppIntroCustomLayoutFragment.newInstance(R.layout.first_slider)
         )
 
         addSlide(
