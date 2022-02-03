@@ -1,4 +1,4 @@
-package com.toggle.ui.fragments.login
+package com.toggle.ui.fragments.loginFragments.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.toggle.databinding.LoginFragmentBinding
+import com.toggle.ui.activities.MainActivity
+import com.toggle.utils.launchActivity
 
 class LoginFragment : Fragment() {
 
@@ -30,6 +32,13 @@ class LoginFragment : Fragment() {
             findNavController().navigate(
                 LoginFragmentDirections.actionLoginFragmentToForgotPassFragment()
             )
+        }
+        binding.login.setOnClickListener {
+
+            requireActivity().apply {
+                launchActivity<MainActivity> {}
+                finish()
+            }
         }
     }
 

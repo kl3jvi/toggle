@@ -12,4 +12,11 @@
     <string name="email_id">Email ID</string>
     <string name="enter_email_address">Enter Email Address</string>
     <string name="enter_password">Enter Password</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="login_simple">Login</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="title_todo">To-Do</string>
+    <string name="title_history">History</string>
+    <string name="title_keypad">Keypad</string>
+    <string name="title_people">People</string>
 </resources>

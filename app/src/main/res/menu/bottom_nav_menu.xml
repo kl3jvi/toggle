@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_to_do"
+        android:icon="@drawable/ic_to_do"
+        android:title="@string/title_todo" />
+
+
+    <item
+        android:id="@+id/navigation_history"
+        android:icon="@drawable/ic_history"
+        android:title="@string/title_history" />
+
+    <item
+        android:id="@+id/navigation_keypad"
+        android:icon="@drawable/ic_keyboard"
+        android:title="@string/title_keypad" />
+
+
+    <item
+        android:id="@+id/navigation_people"
+        android:icon="@drawable/ic_people"
+        android:title="@string/title_people" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_people"
+        android:title="" />
+
+</menu>

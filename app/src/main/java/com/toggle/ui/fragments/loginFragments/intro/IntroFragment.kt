@@ -1,4 +1,4 @@
-package com.toggle.ui.fragments.intro
+package com.toggle.ui.fragments.loginFragments.intro
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,7 +23,7 @@ class IntroFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.login.setOnClickListener {
+        binding.loginDirection.setOnClickListener {
             findNavController().navigate(
                 IntroFragmentDirections.actionIntroFragmentToLoginFragment()
             )

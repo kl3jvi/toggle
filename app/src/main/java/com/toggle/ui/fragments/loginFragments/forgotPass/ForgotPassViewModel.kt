@@ -1,4 +1,4 @@
-package com.toggle.ui.fragments.forgotPass
+package com.toggle.ui.fragments.loginFragments.forgotPass
 
 import androidx.lifecycle.ViewModel
 
