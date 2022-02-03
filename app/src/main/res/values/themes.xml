@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Toggle" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Base.Theme.Toggle" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryColorDark</item>
@@ -14,11 +14,20 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.Toggle" parent="Base.Theme.Toggle" />
+
 
     <style name="Theme.Toggle.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+
     </style>
+
+    <style name="Theme.Toggle.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="TextAppearance.Toggle.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+    <!-- To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ -->
 
 </resources>
