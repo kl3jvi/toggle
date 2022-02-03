@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/appLogo"
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -27,7 +27,7 @@
         android:src="@drawable/ic_first_slide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/appLogo" />
 
     <TextView
         android:id="@+id/the_phone_s"
@@ -60,6 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/the_phone_s" />
 
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

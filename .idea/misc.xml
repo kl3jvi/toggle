@@ -5,11 +5,14 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_big_logo.xml" value="0.216" />
         <entry key="app/src/main/res/drawable/ic_first_slide.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable/input_background.xml" value="0.216" />
         <entry key="app/src/main/res/layout/activity_app_intro.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/first_slider.xml" value="0.30848329048843187" />
+        <entry key="app/src/main/res/layout/forgot_pass_fragment.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/intro_fragment.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/layout/login_fragment.xml" value="0.26785714285714285" />
       </map>
     </option>
   </component>

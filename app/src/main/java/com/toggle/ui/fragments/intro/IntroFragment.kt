@@ -1,27 +1,33 @@
 package com.toggle.ui.fragments.intro
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.toggle.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.toggle.databinding.IntroFragmentBinding
 
 
 class IntroFragment : Fragment() {
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
+    private lateinit var binding: IntroFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro, container, false)
+        binding = IntroFragmentBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.login.setOnClickListener {
+            findNavController().navigate(
+                IntroFragmentDirections.actionIntroFragmentToLoginFragment()
+            )
+        }
     }
 
 }
