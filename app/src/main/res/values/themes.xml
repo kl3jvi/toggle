@@ -34,9 +34,9 @@
 
 
     <style name="Theme.MySplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#000000</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
-        <item name="windowSplashScreenAnimationDuration">200</item>  # Required for
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/loading</item>
+        <item name="windowSplashScreenAnimationDuration">900</item>  # Required for
 
         <item name="postSplashScreenTheme">@style/Theme.Toggle.NoActionBar</item>
     </style>

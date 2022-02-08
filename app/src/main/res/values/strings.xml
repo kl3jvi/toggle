@@ -19,4 +19,5 @@
     <string name="title_history">History</string>
     <string name="title_keypad">Keypad</string>
     <string name="title_people">People</string>
+    <string name="call_icon">Call Icon Type</string>
 </resources>

@@ -1,32 +1,39 @@
 package com.toggle.ui.fragments.otherFragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.toggle.R
+import com.toggle.data.model.SampleCall
+import com.toggle.databinding.ToDoFragmentBinding
+import com.toggle.ui.adapters.ToDoAdapter
+import com.toggle.utils.viewBinding
 
-class ToDoFragment : Fragment() {
+class ToDoFragment : Fragment(R.layout.to_do_fragment) {
 
-    companion object {
-        fun newInstance() = ToDoFragment()
+    private val viewModel: ToDoViewModel by viewModels()
+    private val binding: ToDoFragmentBinding by viewBinding()
+    private val toDoAdapter by lazy { ToDoAdapter() }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
     }
 
-    private lateinit var viewModel: ToDoViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.to_do_fragment, container, false)
+    private fun initViews() {
+        binding.recyclerView.apply {
+            adapter = toDoAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            toDoAdapter.submitList(
+                listOf(
+                    SampleCall("+355 694518882", "on Clay Telecom"),
+                    SampleCall("+355 692193120", "on Clay Telecom"),
+                    SampleCall("+355 693308642", "on Clay Telecom"),
+                    SampleCall("+355 694518882", "on Clay Telecom"),
+                )
+            )
+        }
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ToDoViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
