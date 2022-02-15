@@ -1,4 +1,4 @@
-package com.toggle.ui.fragments.otherFragments
+package com.toggle.ui.fragments.otherFragments.todo
 
 import androidx.lifecycle.ViewModel
 

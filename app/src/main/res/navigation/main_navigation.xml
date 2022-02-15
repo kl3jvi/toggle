@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/toDoFragment"
-        android:name="com.toggle.ui.fragments.otherFragments.ToDoFragment"
+        android:name="com.toggle.ui.fragments.otherFragments.todo.ToDoFragment"
         android:label="to_do_fragment"
-        tools:layout="@layout/to_do_fragment" />
+        tools:layout="@layout/to_do_fragment" >
+        <action
+            android:id="@+id/action_toDoFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.toggle.ui.fragments.otherFragments.details.DetailsFragment"
+        android:label="details_fragment"
+        tools:layout="@layout/details_fragment" />
 </navigation>

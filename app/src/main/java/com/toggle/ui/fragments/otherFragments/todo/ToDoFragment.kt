@@ -1,4 +1,4 @@
-package com.toggle.ui.fragments.otherFragments
+package com.toggle.ui.fragments.otherFragments.todo
 
 import android.os.Bundle
 import android.view.View
