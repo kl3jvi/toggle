@@ -10,8 +10,7 @@ import com.toggle.data.model.SampleCall
 import com.toggle.databinding.ItemToDoBinding
 import com.toggle.ui.fragments.otherFragments.todo.ToDoFragmentDirections
 
-class ToDoAdapter() :
-    ListAdapter<SampleCall, ToDoAdapter.ViewHolder>(MainDiffUtil<SampleCall>()) {
+class ToDoAdapter : ListAdapter<SampleCall, ToDoAdapter.ViewHolder>(MainDiffUtil<SampleCall>()) {
     inner class ViewHolder(val binding: ItemToDoBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {

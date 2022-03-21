@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.toggle.R
 import com.toggle.data.model.SampleCall
 import com.toggle.databinding.ToDoFragmentBinding
+import com.toggle.ui.activities.MainActivity
 import com.toggle.ui.adapters.ToDoAdapter
 import com.toggle.utils.viewBinding
 
@@ -34,6 +35,13 @@ class ToDoFragment : Fragment(R.layout.to_do_fragment) {
                     SampleCall("+355 694518882", "on Clay Telecom"),
                 )
             )
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (requireActivity() is MainActivity) {
+            (activity as MainActivity?)?.showBottomNavBar()
         }
     }
 }

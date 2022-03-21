@@ -1,7 +1,6 @@
 package com.toggle.data.repository
 
-import com.toggle.data.model.LoginCheck
-import com.toggle.data.model.LoginCheckItem
+import com.toggle.data.model.First
 import com.toggle.data.network.AuthenticationService
 import com.toggle.domain.repository.AuthenticationRepository
 import com.toggle.domain.repository.NetworkBoundRepository
@@ -13,9 +12,9 @@ import javax.inject.Inject
 class AuthenticationRepositoryImpl @Inject constructor(
     private val authenticationService: AuthenticationService
 ) : AuthenticationRepository {
-    override fun checkLogin(email: String, password: String): Flow<Resource<List<LoginCheckItem>>> {
-        return object : NetworkBoundRepository<List<LoginCheckItem>>() {
-            override suspend fun fetchFromRemote(): Response<List<LoginCheckItem>> {
+    override fun checkLogin(email: String, password: String): Flow<Resource<First>> {
+        return object : NetworkBoundRepository<First>() {
+            override suspend fun fetchFromRemote(): Response<First> {
                 return authenticationService.checkLogin(API_ACTION, email, password)
             }
         }.asFlow()

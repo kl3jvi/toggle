@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 
 class LoginCheck : ArrayList<LoginCheckItem>()
 
-@JsonClass(generateAdapter = true)
+
 data class LoginCheckItem(
     @Json(name = "")
     val firstItem: ArrayList<First>?,

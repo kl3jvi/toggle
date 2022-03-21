@@ -28,20 +28,20 @@
             android:layout_marginStart="@dimen/dp_24"
             android:layout_marginTop="@dimen/dp_24"
             android:layout_marginBottom="@dimen/dp_24"
-            android:background="#2CA48B"
+
             app:cardBackgroundColor="#2CA48B"
             app:cardCornerRadius="@dimen/dp_4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/callType"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:contentDescription="@string/call_icon"-->
-<!--                android:padding="@dimen/dp_3"-->
-<!--                android:src="@drawable/ic_phone_out" />-->
+            <ImageView
+                android:id="@+id/callType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/call_icon"
+                android:padding="@dimen/dp_3"
+                android:src="@drawable/ic_phone_out" />
         </androidx.cardview.widget.CardView>
 
         <TextView

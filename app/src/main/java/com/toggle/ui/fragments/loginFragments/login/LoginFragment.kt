@@ -10,9 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.toggle.databinding.LoginFragmentBinding
-import com.toggle.ui.activities.MainActivity
 import com.toggle.utils.State
-import com.toggle.utils.launchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,10 +40,10 @@ class LoginFragment : Fragment() {
 //            if (validateFields()) {
             val email = binding.emailAddress.text.toString()
             val password = binding.editTextTextPassword.text.toString()
-            requireActivity().apply {
-                launchActivity<MainActivity> {}
-                finish()
-            }
+//            requireActivity().apply {
+//                launchActivity<MainActivity> {}
+//                finish()
+//            }
             lifecycleScope.launchWhenCreated {
                 viewModel.checkForLogIn(
                     email,
@@ -65,7 +63,7 @@ class LoginFragment : Fragment() {
                         is State.Success -> {
                             Toast.makeText(
                                 requireContext(),
-                                "Success Logged In",
+                                "${state.data}",
                                 Toast.LENGTH_SHORT
                             ).show()
 
