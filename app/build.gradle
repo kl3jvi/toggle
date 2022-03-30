@@ -43,11 +43,15 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    def navigationComponentVersion = "2.5.0-alpha01"
+    def navigationComponentVersion = "2.5.0-alpha03"
     implementation "androidx.navigation:navigation-runtime-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationComponentVersion"
@@ -63,16 +67,16 @@ dependencies {
     def constraintLayoutVersion = "2.1.3"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
-    def livedataVersion = "2.4.0"
-    def viewModelVersion = "2.4.0"
+    def livedataVersion = "2.4.1"
+    def viewModelVersion = "2.4.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
 
-    def fragmentVersion = "1.4.1"
+    def fragmentVersion = "1.5.0-alpha04"
     implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
     // by viewModels() delegate provider
 
-    def lifecycle_version = "2.4.0"
+    def lifecycle_version = "2.5.0-alpha05"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     // Coroutines
@@ -116,7 +120,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     //Splashscreen
-    def splashScreenVersion = "1.0.0-beta01"
+    def splashScreenVersion = "1.0.0-beta02"
     implementation "androidx.core:core-splashscreen:$splashScreenVersion"
 
     def inAppBrowserVersion = "1.4.0"
@@ -135,5 +139,11 @@ dependencies {
     implementation "com.github.AppIntro:AppIntro:$introVersion"
 
     implementation "com.pjdroid:pjdroid:2.2.4"
+
+    def epoxyVersion = "5.0.0-beta03"
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    implementation "com.airbnb.android:epoxy-databinding:$epoxyVersion"
+    implementation "com.airbnb.android:epoxy-paging3:$epoxyVersion"
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 
 }

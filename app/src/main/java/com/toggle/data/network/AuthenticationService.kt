@@ -1,7 +1,7 @@
 package com.toggle.data.network
 
-import com.toggle.data.model.First
-import retrofit2.Response
+import com.toggle.data.model.CallHistoryItem
+import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,7 +12,12 @@ interface AuthenticationService {
         @Query("apiAction") apiAction: String,
         @Query("emailID") email: String,
         @Query("passWord") password: String,
-    ): Response<First>
+    ): ResponseBody
 
-
+    @GET("reg/userCalldataApp")
+    suspend fun getCallHistory(
+        @Query("Mode") apiAction: String,
+        @Query("userId") email: String,
+        @Query("TeamID") password: String,
+    ): List<CallHistoryItem>
 }

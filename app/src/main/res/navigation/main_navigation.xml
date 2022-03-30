@@ -18,6 +18,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.toggle.ui.fragments.otherFragments.details.DetailsFragment"
@@ -30,4 +31,14 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_history"-->
+<!--        android:name="com.toggle.ui.fragments.otherFragments.callHistory.CallHistoryFragment"-->
+<!--        android:label="call_history_fragment"-->
+<!--        tools:layout="@layout/call_history_fragment" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_callHistoryFragment_to_detailsFragment"-->
+<!--            app:destination="@id/detailsFragment" />-->
+<!--    </fragment>-->
 </navigation>

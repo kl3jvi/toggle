@@ -36,7 +36,7 @@
     <style name="Theme.MySplash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/loading</item>
-        <item name="windowSplashScreenAnimationDuration">900</item>  # Required for
+        <item name="windowSplashScreenAnimationDuration">3000</item>  # Required for
 
         <item name="postSplashScreenTheme">@style/Theme.Toggle.NoActionBar</item>
     </style>

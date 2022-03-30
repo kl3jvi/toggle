@@ -1,0 +1,147 @@
+[
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 0,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-25 16:59:31",
+    "CallFrom": "09867814654",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 132
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 14,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-25 16:40:31",
+    "CallFrom": "07488409533",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 131
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 58,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-25 16:23:25",
+    "CallFrom": "919304253599",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 130
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 9,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-25 16:23:12",
+    "CallFrom": "9742524007",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 129
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 87,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-24 15:22:44",
+    "CallFrom": "07969074757",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 102
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 22,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-24 13:31:50",
+    "CallFrom": "08037757349",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 101
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 22,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-23 14:01:33",
+    "CallFrom": "01171636388",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 71
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 26,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-21 18:00:43",
+    "CallFrom": "07291949302",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 48
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 24,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-21 12:23:18",
+    "CallFrom": "07314874002",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 47
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 8,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-20 18:29:53",
+    "CallFrom": "08071797073",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 31
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 39,
+    "callStatus": "NO ANSWER",
+    "callDate": "2022-03-16 16:38:11",
+    "CallFrom": "07290937907",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 21
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 1,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-15 18:42:24",
+    "CallFrom": "9718006379",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 9
+  },
+  {
+    "callredBY": "374",
+    "CallingNo": "1166470003",
+    "Duration": 22,
+    "callStatus": "ANSWERED",
+    "callDate": "2022-03-15 16:03:23",
+    "CallFrom": "01725346003",
+    "Ctype": "INCOMING",
+    "recFile": null,
+    "uniID": 5
+  }
+]
+
+

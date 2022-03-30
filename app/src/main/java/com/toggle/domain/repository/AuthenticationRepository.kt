@@ -1,9 +1,7 @@
 package com.toggle.domain.repository
 
-import com.toggle.data.model.First
-import com.toggle.utils.Resource
-import kotlinx.coroutines.flow.Flow
+import com.toggle.data.model.LoginResponseItem
 
 interface AuthenticationRepository {
-    fun checkLogin(email: String, password: String): Flow<Resource<First>>
+    suspend fun checkLogin(email: String, password: String): List<LoginResponseItem>?
 }
