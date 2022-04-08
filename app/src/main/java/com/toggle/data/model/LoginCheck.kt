@@ -25,7 +25,7 @@ data class LoginResponseItem(
     val serverStatus: Int?,
     @Json(name = "warningCount")
     val warningCount: Int?,
-    @Json(name = "userid")
+    @Json(name = "UserId")
     val userId: Int?,
     @Json(name = "userfname")
     val firstName: String?,

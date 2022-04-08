@@ -18,11 +18,21 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            moduleName "libpjsua2"
+        }
+
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+            }
+        }
     }
 
-    android {
-        ndkVersion "23.1.7779620" // e.g.,  ndkVersion '21.3.6528147'
-    }
+
+//    ndkVersion "23.1.7779620" // e.g.,  ndkVersion '21.3.6528147'
+
 
     buildTypes {
         release {
@@ -131,6 +141,7 @@ dependencies {
 
     def bottomSheetVersion = "2.2.6"
     implementation "com.maxkeppeler.sheets:core:$bottomSheetVersion"
+    implementation "com.maxkeppeler.sheets:options:$bottomSheetVersion"
 
     def paginationVersion = "3.1.1"
     implementation "androidx.paging:paging-runtime-ktx:$paginationVersion"
@@ -138,7 +149,7 @@ dependencies {
     def introVersion = "6.2.0"
     implementation "com.github.AppIntro:AppIntro:$introVersion"
 
-    implementation "com.pjdroid:pjdroid:2.2.4"
+//    implementation "com.pjdroid:pjdroid:2.2.4"
 
     def epoxyVersion = "5.0.0-beta03"
     implementation "com.airbnb.android:epoxy:$epoxyVersion"
@@ -146,4 +157,6 @@ dependencies {
     implementation "com.airbnb.android:epoxy-paging3:$epoxyVersion"
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(":pjsip")
 }

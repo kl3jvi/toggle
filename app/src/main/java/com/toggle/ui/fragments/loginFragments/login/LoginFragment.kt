@@ -32,6 +32,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.forgotPassword.setOnClickListener {
             findNavController().navigate(
                 LoginFragmentDirections.actionLoginFragmentToForgotPassFragment()
@@ -54,9 +55,9 @@ class LoginFragment : Fragment() {
                     }
                 }
             }
-
         }
     }
+
 
     private fun validateFields(): Boolean {
         if (binding.emailAddress.text.isEmpty()) binding.emailAddress.error =
@@ -75,7 +76,12 @@ class LoginFragment : Fragment() {
         if (responseItem?.flag.equals("Wrong Password ")) {
             makeToast(responseItem?.flag)
         } else if (responseItem?.flag.equals("Success")) {
-
+            responseItem?.let {
+                viewModel.saveUserData(
+                    it.userId.toString(),
+                    it.TUserId.toString()
+                )
+            }
             requireActivity().apply {
                 launchActivity<MainActivity> {}
                 finish()

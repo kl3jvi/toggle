@@ -4,4 +4,9 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class ToggleApplication : Application()
+class ToggleApplication : Application(){
+    override fun onCreate() {
+        super.onCreate()
+        System.loadLibrary("libpjsua2")
+    }
+}

@@ -1,6 +1,8 @@
 package com.toggle.domain.repository
 
 interface LocalStorage {
-    val userId: String?
-    val tUserId: String?
+    var userId: String?
+    var tUserId: String?
+    var sipId: String?
+    fun clearStorage()
 }

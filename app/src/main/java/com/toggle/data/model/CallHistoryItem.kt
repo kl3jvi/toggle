@@ -1,9 +1,12 @@
 package com.toggle.data.model
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class CallHistoryItem(
     @Json(name = "callDate")
@@ -21,7 +24,7 @@ data class CallHistoryItem(
     @Json(name = "Duration")
     val duration: Int?,
     @Json(name = "recFile")
-    val recFile: Any?,
+    val recFile: String?,
     @Json(name = "uniID")
     val uniID: Int?
-)
+) : Parcelable

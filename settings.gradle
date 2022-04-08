@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Toggle"
 include ':app'
+include ':pjsip'

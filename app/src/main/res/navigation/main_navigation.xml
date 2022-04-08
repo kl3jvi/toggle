@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/toDoFragment">
+    app:startDestination="@id/navigation_to_do">
 
     <fragment
-        android:id="@+id/toDoFragment"
+        android:id="@+id/navigation_to_do"
         android:name="com.toggle.ui.fragments.otherFragments.todo.ToDoFragment"
         android:label="to_do_fragment"
         tools:layout="@layout/to_do_fragment">
@@ -30,15 +30,28 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="callHistory"
+            app:argType="com.toggle.data.model.CallHistoryItem" />
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/navigation_history"-->
-<!--        android:name="com.toggle.ui.fragments.otherFragments.callHistory.CallHistoryFragment"-->
-<!--        android:label="call_history_fragment"-->
-<!--        tools:layout="@layout/call_history_fragment" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_callHistoryFragment_to_detailsFragment"-->
-<!--            app:destination="@id/detailsFragment" />-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.toggle.ui.fragments.otherFragments.callHistory.CallHistoryFragment"
+        android:label="call_history_fragment"
+        tools:layout="@layout/call_history_fragment">
+        <action
+            android:id="@+id/action_callHistoryFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <!--    <fragment-->
+    <!--        android:id="@+id/navigation_history"-->
+    <!--        android:name="com.toggle.ui.fragments.otherFragments.callHistory.CallHistoryFragment"-->
+    <!--        android:label="call_history_fragment"-->
+    <!--        tools:layout="@layout/call_history_fragment" >-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_callHistoryFragment_to_detailsFragment"-->
+    <!--            app:destination="@id/detailsFragment" />-->
+    <!--    </fragment>-->
 </navigation>
