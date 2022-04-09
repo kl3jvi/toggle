@@ -22,7 +22,21 @@ import org.pjsip.pjsua2.*
 
 @AndroidEntryPoint
 class CallerFragment : Fragment(R.layout.caller_fragment) {
-
+    private val stringList = listOf(
+        "A B C",
+        "D E F",
+        "G H I",
+        "J K L",
+        "M N O",
+        "P Q R S",
+        "T U V",
+        "W X Y Z",
+    )
+    val lastRow = listOf(
+        "*",
+        "0",
+        "#"
+    )
     private val viewModel: CallerViewModel by viewModels()
     private val binding: CallerFragmentBinding by viewBinding()
 
@@ -92,20 +106,16 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
 
     private fun initViews() {
         binding.dialer.withModels {
-            val stringList = listOf(
-                "A B C",
-                "D E F",
-                "G H I",
-                "J K L",
-                "M N O",
-                "P Q R S",
-                "T U V",
-                "W X Y Z",
-            )
-            for (i in 1..9) {
+
+            for (i in 1..12) {
                 dialButton {
                     id(i)
-                    num(i.toString())
+                    if (i in 1..9) {
+                        num(i.toString())
+                    }
+                    else {
+                        num(lastRow[i - 10])
+                    }
                     clickListener { v ->
                         binding.callNumber.append(i.toString())
                     }
