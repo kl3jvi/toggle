@@ -4,15 +4,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.toggle.R
 import com.toggle.databinding.CallerFragmentBinding
+import com.toggle.dialButton
 import com.toggle.services.Global
 import com.toggle.services.MyCall
 import com.toggle.services.MyLogWriter
 import com.toggle.utils.PROXY
 import com.toggle.utils.REGISTRAR
+import com.toggle.utils.SIP_URI
 import com.toggle.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.pjsip.pjsua2.*
 
 @AndroidEntryPoint
@@ -21,21 +26,11 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
     private val viewModel: CallerViewModel by viewModels()
     private val binding: CallerFragmentBinding by viewBinding()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val accountId = viewModel.getUserSipId()
-        val username = viewModel.getUserSipId()
-        val password = viewModel.getUserSipId()
-        val registrar = REGISTRAR
-        val proxy = PROXY
-
-
-        /* Setup Start button */
-        binding.buttonStart.setOnClickListener {
-
+    override fun onStart() {
+        super.onStart()
+        lifecycleScope.launch(Dispatchers.Default) {
             if (Global.endpoint.libGetState() > pjsua_state.PJSUA_STATE_NULL)
-                return@setOnClickListener
+                return@launch
 
             val epConfig = EpConfig()
 
@@ -55,43 +50,6 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
                 println(e)
             }
 
-            /* Create transports and account. */
-            try {
-                val sipTpConfig = TransportConfig()
-                sipTpConfig.port = 5061
-                Global.endpoint.transportCreate(
-                    pjsip_transport_type_e.PJSIP_TRANSPORT_UDP,
-                    sipTpConfig
-                )
-
-                val accCfg = AccountConfig()
-                accCfg.idUri = accountId
-                accCfg.regConfig.registrarUri = registrar
-                val creds = accCfg.sipConfig.authCreds
-                creds.clear()
-                if (!username.isNullOrEmpty()) {
-                    creds.add(
-                        AuthCredInfo(
-                            "Digest", "*", username, 0,
-                            password
-                        )
-                    )
-                }
-                val proxies = accCfg.sipConfig.proxies
-                proxies.clear()
-                if (proxy.isNotEmpty()) {
-                    proxies.add(proxy)
-                }
-//                Global.account.create(accCfg, true)
-                /* Enable ICE */accCfg.natConfig.iceEnabled = true
-
-                try {
-                    Global.account.create(accCfg,true)
-                } catch (e: Exception) {
-                }
-            } catch (e: Exception) {
-                println(e)
-            }
 
             /* Start PJSUA2 */
             try {
@@ -99,6 +57,18 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
             } catch (e: Exception) {
                 println(e)
             }
+        }
+
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initViews()
+        /* Setup Start button */
+        binding.buttonStart.setOnClickListener {
+            setupCall()
         }
 
         /* Setup Call button */
@@ -112,15 +82,90 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
 
                 /* Make call (to itself) */
                 val call = MyCall(Global.account, -1)
-                call.makeCall("sip:localhost", CallOpParam(true))
+                call.makeCall(SIP_URI, CallOpParam(true))
             } catch (e: Exception) {
                 println(e)
             }
         }
 
-        /* Setup Stop button */
-        binding.buttonStop.setOnClickListener {
-            /* Destroy PJSUA2 */
+    }
+
+    private fun initViews() {
+        binding.dialer.withModels {
+            val stringList = listOf(
+                "A B C",
+                "D E F",
+                "G H I",
+                "J K L",
+                "M N O",
+                "P Q R S",
+                "T U V",
+                "W X Y Z",
+            )
+            for (i in 1..9) {
+                dialButton {
+                    id(i)
+                    num(i.toString())
+                    clickListener { v ->
+                        binding.callNumber.append(i.toString())
+                    }
+                    if (i in 2..9)
+                        digits(stringList[i - 2])
+                }
+            }
+        }
+    }
+
+
+    private fun setupCall() {
+        /* Create transports and account. */
+        val accountId = viewModel.getUserSipId()
+        val username = viewModel.getUserSipId()
+        val password = viewModel.getUserSipId()
+        val registrar = REGISTRAR
+        val proxy = PROXY
+        try {
+            val sipTpConfig = TransportConfig()
+            sipTpConfig.port = 5061
+            Global.endpoint.transportCreate(
+                pjsip_transport_type_e.PJSIP_TRANSPORT_UDP,
+                sipTpConfig
+            )
+
+            val accCfg = AccountConfig()
+            accCfg.idUri = accountId
+            accCfg.regConfig.registrarUri = registrar
+            val creds = accCfg.sipConfig.authCreds
+            creds.clear()
+            if (!username.isNullOrEmpty()) {
+                creds.add(
+                    AuthCredInfo(
+                        "Digest", "*", username, 0,
+                        password
+                    )
+                )
+            }
+            val proxies = accCfg.sipConfig.proxies
+            proxies.clear()
+            if (proxy.isNotEmpty()) {
+                proxies.add(proxy)
+            }
+//                Global.account.create(accCfg, true)
+            /* Enable ICE */accCfg.natConfig.iceEnabled = true
+
+            try {
+                Global.account.create(accCfg, true)
+            } catch (e: Exception) {
+            }
+        } catch (e: Exception) {
+            println(e)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        /* Destroy PJSUA2 */
+        lifecycleScope.launch(Dispatchers.Default) {
             try {
                 Global.endpoint.libDestroy()
             } catch (e: Exception) {

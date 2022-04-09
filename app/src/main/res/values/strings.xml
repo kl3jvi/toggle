@@ -30,4 +30,16 @@
     <string name="phone_number">+ %1s</string>
     <string name="recording">Recording</string>
     <string name="tags">Tags</string>
+    <string name="one">One</string>
+    <string name="two">two</string>
+    <string name="three">three</string>
+    <string name="four">four</string>
+    <string name="five" />
+    <string name="six">six</string>
+    <string name="seven">seven</string>
+    <string name="eight">eight</string>
+    <string name="nine">nine</string>
+    <string name="asterisk">asterisk</string>
+    <string name="zero">zero</string>
+    <string name="hashtag">hashtag</string>
 </resources>

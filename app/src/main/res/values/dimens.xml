@@ -11,4 +11,9 @@
     <dimen name="dp_20">20dp</dimen>
     <dimen name="dp_5">5dp</dimen>
     <dimen name="dp_10">10dp</dimen>
+    <dimen name="medium_margin">10dp</dimen>
+    <dimen name="activity_margin">10dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+    <dimen name="actionbar_text_size">20sp</dimen>
+    <dimen name="dp_15">15dp</dimen>
 </resources>
