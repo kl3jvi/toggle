@@ -45,6 +45,11 @@
             app:destination="@id/detailsFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_keypad"
+        android:name="com.toggle.ui.fragments.otherFragments.caller.CallerFragment"
+        android:label="CallerFragment" />
+
     <!--    <fragment-->
     <!--        android:id="@+id/navigation_history"-->
     <!--        android:name="com.toggle.ui.fragments.otherFragments.callHistory.CallHistoryFragment"-->

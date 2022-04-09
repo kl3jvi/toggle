@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/call_history_fragment.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/caller_fragment.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/details_fragment.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/first_slider.xml" value="0.30848329048843187" />
         <entry key="app/src/main/res/layout/forgot_pass_fragment.xml" value="0.24270833333333333" />
@@ -32,7 +33,7 @@
         <entry key="app/src/main/res/layout/item_title.xml" value="0.26296296296296295" />
         <entry key="app/src/main/res/layout/item_to_do.xml" value="0.5" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.26785714285714285" />
-        <entry key="app/src/main/res/layout/test_activity.xml" value="0.10885416666666667" />
+        <entry key="app/src/main/res/layout/test_activity.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/to_do_fragment.xml" value="0.2618510158013544" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1215" />

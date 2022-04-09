@@ -18,20 +18,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        ndk {
-            moduleName "libpjsua2"
-        }
-
-        externalNativeBuild {
-            cmake {
-                arguments "-DANDROID_STL=c++_shared"
-            }
-        }
     }
 
 
-//    ndkVersion "23.1.7779620" // e.g.,  ndkVersion '21.3.6528147'
+    ndkVersion "23.1.7779620" // e.g.,  ndkVersion '21.3.6528147'
 
 
     buildTypes {
@@ -58,9 +48,10 @@ kapt {
 }
 
 dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':pjsua2')
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
     def navigationComponentVersion = "2.5.0-alpha03"
     implementation "androidx.navigation:navigation-runtime-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
@@ -157,6 +148,5 @@ dependencies {
     implementation "com.airbnb.android:epoxy-paging3:$epoxyVersion"
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(":pjsip")
+
 }
