@@ -36,7 +36,7 @@ public class VideoMedia extends Media {
     super.delete();
   }
 
-  public VidConfPortInfo getPortInfo() throws java.lang.Exception {
+  public VidConfPortInfo getPortInfo() throws Exception {
     return new VidConfPortInfo(pjsua2JNI.VideoMedia_getPortInfo(swigCPtr, this), true);
   }
 
@@ -44,20 +44,16 @@ public class VideoMedia extends Media {
     return pjsua2JNI.VideoMedia_getPortId(swigCPtr, this);
   }
 
-  public static VidConfPortInfo getPortInfoFromId(int port_id) throws java.lang.Exception {
+  public static VidConfPortInfo getPortInfoFromId(int port_id) throws Exception {
     return new VidConfPortInfo(pjsua2JNI.VideoMedia_getPortInfoFromId(port_id), true);
   }
 
-  public void startTransmit(VideoMedia sink, VideoMediaTransmitParam param) throws java.lang.Exception {
+  public void startTransmit(VideoMedia sink, VideoMediaTransmitParam param) throws Exception {
     pjsua2JNI.VideoMedia_startTransmit(swigCPtr, this, VideoMedia.getCPtr(sink), sink, VideoMediaTransmitParam.getCPtr(param), param);
   }
 
-  public void stopTransmit(VideoMedia sink) throws java.lang.Exception {
+  public void stopTransmit(VideoMedia sink) throws Exception {
     pjsua2JNI.VideoMedia_stopTransmit(swigCPtr, this, VideoMedia.getCPtr(sink), sink);
-  }
-
-  public void update() throws java.lang.Exception {
-    pjsua2JNI.VideoMedia_update(swigCPtr, this);
   }
 
   public VideoMedia() {

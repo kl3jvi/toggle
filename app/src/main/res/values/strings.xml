@@ -20,6 +20,7 @@
     <string name="title_keypad">Keypad</string>
     <string name="title_people">People</string>
     <string name="call_icon">Call Icon Type</string>
+    <string name="call_history">Call History</string>
     <string name="assignedToYou">Assigned To You</string>
     <string name="assignedTo">Assigned To</string>
     <string name="filter_transition">filter_transition</string>
@@ -42,4 +43,6 @@
     <string name="asterisk">asterisk</string>
     <string name="zero">zero</string>
     <string name="hashtag">hashtag</string>
+    <string name="button_allow">Allow</string>
+    <string name="button_deny">Deny</string>
 </resources>

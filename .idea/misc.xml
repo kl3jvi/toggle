@@ -15,12 +15,13 @@
         <entry key="app/src/main/res/drawable/ic_people.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_phone_in.xml" value="0.161" />
         <entry key="app/src/main/res/drawable/ic_phone_out.xml" value="0.2345" />
+        <entry key="app/src/main/res/drawable/ic_simple_phone.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/input_background.xml" value="0.216" />
         <entry key="app/src/main/res/layout/activity_app_intro.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/call_history_fragment.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/call_history_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/caller_fragment.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/details_fragment.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/dialer.xml" value="0.21481481481481482" />

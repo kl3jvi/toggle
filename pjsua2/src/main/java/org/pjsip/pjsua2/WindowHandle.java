@@ -36,7 +36,7 @@ public class WindowHandle {
     }
   }
 
-  public void setWindow(java.lang.Object surface) {
+  public void setWindow(Object surface) {
     pjsua2JNI.WindowHandle_setWindow(swigCPtr, this, surface);
   }
 

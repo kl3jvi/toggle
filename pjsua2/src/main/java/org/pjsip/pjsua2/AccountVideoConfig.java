@@ -112,11 +112,11 @@ public class AccountVideoConfig extends PersistentObject {
     this(pjsua2JNI.new_AccountVideoConfig(), true);
   }
 
-  public void readObject(ContainerNode node) throws java.lang.Exception {
+  public void readObject(ContainerNode node) throws Exception {
     pjsua2JNI.AccountVideoConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
   }
 
-  public void writeObject(ContainerNode node) throws java.lang.Exception {
+  public void writeObject(ContainerNode node) throws Exception {
     pjsua2JNI.AccountVideoConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
   }
 

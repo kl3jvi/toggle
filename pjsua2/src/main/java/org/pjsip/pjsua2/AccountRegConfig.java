@@ -69,14 +69,6 @@ public class AccountRegConfig extends PersistentObject {
     return pjsua2JNI.AccountRegConfig_contactParams_get(swigCPtr, this);
   }
 
-  public void setContactUriParams(String value) {
-    pjsua2JNI.AccountRegConfig_contactUriParams_set(swigCPtr, this, value);
-  }
-
-  public String getContactUriParams() {
-    return pjsua2JNI.AccountRegConfig_contactUriParams_get(swigCPtr, this);
-  }
-
   public void setTimeoutSec(long value) {
     pjsua2JNI.AccountRegConfig_timeoutSec_set(swigCPtr, this, value);
   }
@@ -141,11 +133,19 @@ public class AccountRegConfig extends PersistentObject {
     return pjsua2JNI.AccountRegConfig_proxyUse_get(swigCPtr, this);
   }
 
-  public void readObject(ContainerNode node) throws java.lang.Exception {
+  public void setCallID(String value) {
+    pjsua2JNI.AccountRegConfig_callID_set(swigCPtr, this, value);
+  }
+
+  public String getCallID() {
+    return pjsua2JNI.AccountRegConfig_callID_get(swigCPtr, this);
+  }
+
+  public void readObject(ContainerNode node) throws Exception {
     pjsua2JNI.AccountRegConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
   }
 
-  public void writeObject(ContainerNode node) throws java.lang.Exception {
+  public void writeObject(ContainerNode node) throws Exception {
     pjsua2JNI.AccountRegConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
   }
 

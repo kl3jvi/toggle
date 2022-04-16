@@ -111,31 +111,15 @@ public class AccountMediaConfig extends PersistentObject {
     return (cPtr == 0) ? null : new RtcpFbConfig(cPtr, false);
   }
 
-  public void setUseLoopMedTp(boolean value) {
-    pjsua2JNI.AccountMediaConfig_useLoopMedTp_set(swigCPtr, this, value);
-  }
-
-  public boolean getUseLoopMedTp() {
-    return pjsua2JNI.AccountMediaConfig_useLoopMedTp_get(swigCPtr, this);
-  }
-
-  public void setEnableLoopback(boolean value) {
-    pjsua2JNI.AccountMediaConfig_enableLoopback_set(swigCPtr, this, value);
-  }
-
-  public boolean getEnableLoopback() {
-    return pjsua2JNI.AccountMediaConfig_enableLoopback_get(swigCPtr, this);
-  }
-
   public AccountMediaConfig() {
     this(pjsua2JNI.new_AccountMediaConfig(), true);
   }
 
-  public void readObject(ContainerNode node) throws java.lang.Exception {
+  public void readObject(ContainerNode node) throws Exception {
     pjsua2JNI.AccountMediaConfig_readObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
   }
 
-  public void writeObject(ContainerNode node) throws java.lang.Exception {
+  public void writeObject(ContainerNode node) throws Exception {
     pjsua2JNI.AccountMediaConfig_writeObject(swigCPtr, this, ContainerNode.getCPtr(node), node);
   }
 

@@ -46,7 +46,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="@dimen/dp_16"
             android:fontFamily="@font/medium_font"
-            android:text="@string/assignedToYou"
+            android:text="@string/call_history"
             android:textColor="@color/primaryTextColor"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
