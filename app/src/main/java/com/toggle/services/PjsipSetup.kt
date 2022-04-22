@@ -32,23 +32,23 @@ class MyCall(acc: MyAccount, call_id: Int, private val endpoint: Endpoint) : Cal
         }
 
         val cmiv = ci.media
-        for (i in cmiv.indices) {
-            val cmi = cmiv[i]
-            if (cmi.type == pjmedia_type.PJMEDIA_TYPE_AUDIO &&
-                (cmi.status == pjsua_call_media_status.PJSUA_CALL_MEDIA_ACTIVE ||
-                        cmi.status == pjsua_call_media_status.PJSUA_CALL_MEDIA_REMOTE_HOLD)
-            ) {
-                /* Connect ports */
-                try {
-                    val am = getAudioMedia(i)
-                    endpoint.audDevManager().captureDevMedia.startTransmit(am)
-                    am.startTransmit(endpoint.audDevManager().playbackDevMedia)
-                } catch (e: Exception) {
-                    println("Failed connecting media ports" + e.message)
-                    continue
-                }
-            }
-        }
+//        for (i in cmiv.) {
+//            val cmi = cmiv[i]
+//            if (cmi.type == pjmedia_type.PJMEDIA_TYPE_AUDIO &&
+//                (cmi.status == pjsua_call_media_status.PJSUA_CALL_MEDIA_ACTIVE ||
+//                        cmi.status == pjsua_call_media_status.PJSUA_CALL_MEDIA_REMOTE_HOLD)
+//            ) {
+//                /* Connect ports */
+//                try {
+//                    val am = getAudioMedia(i)
+//                    endpoint.audDevManager().captureDevMedia.startTransmit(am)
+//                    am.startTransmit(endpoint.audDevManager().playbackDevMedia)
+//                } catch (e: Exception) {
+//                    println("Failed connecting media ports" + e.message)
+//                    continue
+//                }
+//            }
+//        }
     }
 
 }

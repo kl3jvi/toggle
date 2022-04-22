@@ -49,7 +49,7 @@ kapt {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(path: ':pjsua2')
+    implementation project(path: ':sipservice')
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def navigationComponentVersion = "2.5.0-alpha03"
@@ -137,10 +137,6 @@ dependencies {
     def paginationVersion = "3.1.1"
     implementation "androidx.paging:paging-runtime-ktx:$paginationVersion"
 
-    def introVersion = "6.2.0"
-    implementation "com.github.AppIntro:AppIntro:$introVersion"
-
-//    implementation "com.pjdroid:pjdroid:2.2.4"
     implementation "com.github.permissions-dispatcher:permissionsdispatcher:4.9.2"
     kapt "com.github.permissions-dispatcher:permissionsdispatcher-processor:4.9.2"
 

@@ -1,4 +1,4 @@
-/* $Id$ */
+/* $Id: PjCamera.java 5019 2015-03-23 06:35:45Z nanang $ */
 /*
  * Copyright (C) 2015 Teluu Inc. (http://www.teluu.com)
  *
@@ -21,8 +21,8 @@ package org.pjsip;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.util.Log;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.SurfaceHolder;
 
 import java.io.IOException;
 

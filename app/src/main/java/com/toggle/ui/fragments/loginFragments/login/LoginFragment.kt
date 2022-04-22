@@ -82,11 +82,14 @@ class LoginFragment : Fragment() {
                     it.TUserId.toString()
                 )
             }
+
             requireActivity().apply {
                 launchActivity<MainActivity> {}
                 finish()
             }
         }
     }
+
+
 }
 
