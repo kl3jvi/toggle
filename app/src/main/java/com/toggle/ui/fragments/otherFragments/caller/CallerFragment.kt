@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.toggle.R
 import com.toggle.databinding.CallerFragmentBinding
+import com.toggle.utils.HOST
 import com.toggle.utils.NetworkUtils.isConnectedToInternet
 import com.toggle.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,13 +54,13 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
     lateinit var mAccountId: String
 
     fun login() {
-        val psipId = "kristileka"
+        val psipId = "kl3jvi"
         mAccount = SipAccountData()
         mAccount.host = "sip.linphone.org"
         mAccount.realm = "sip.linphone.org" //realm指的是：sip:1004@192.168.2.243中的192.168.2.243
-        mAccount
+
         mAccount.username = psipId
-        mAccount.password = "Test123"
+        mAccount.password = "kl3jvi!@#"
         mAccount.isTcpTransport = true
         mAccountId = SipServiceCommand.setAccount(requireContext(), mAccount)
         Log.i("MainActivity.TAG", "login: $mAccountId")
@@ -71,7 +72,7 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
             SipServiceCommand.makeCall(
                 requireContext(),
                 mAccountId,
-                "sip:kl3jvi@sip.linphone.org",
+                "sip:kristileka@sip.linphone.org",
                 false,
                 false
             )

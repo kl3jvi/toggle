@@ -3,7 +3,6 @@ package com.toggle.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.SurfaceHolder
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -16,7 +15,7 @@ import net.gotev.sipservice.RtpStreamStats
 import net.gotev.sipservice.SipServiceCommand
 import org.pjsip.pjsua2.pjsip_inv_state
 
-class CallActivity : AppCompatActivity(),View.OnClickListener {
+class CallActivity : AppCompatActivity(), View.OnClickListener {
 
     private var mAccountID: String? = null
     private var mDisplayName: String? = null
@@ -46,7 +45,8 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
         binding.btnCancel.setOnClickListener(this)
         binding.buttonAccept.setOnClickListener(this)
         binding.buttonHangup.setOnClickListener(this)
-
+        binding.btnHangUp.setOnClickListener(this)
+        binding.btnMuteMic.setOnClickListener(this)
     }
 
     private fun registerReceiver() {
@@ -64,29 +64,7 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
         mIsVideoConference = intent.getBooleanExtra("isVideoConference", false)
         showLayout(mType)
         binding.textViewPeer.text = String.format("%s\n%s", mRemoteUri, mDisplayName)
-        binding.tvOutCallInfo.text = String.format("您正在呼叫 %s", mNumber)
-        val holder: SurfaceHolder = binding.svLocal.holder
-//        holder.addCallback(this)
-        binding.svRemote.holder.addCallback(object : SurfaceHolder.Callback {
-            override fun surfaceCreated(surfaceHolder: SurfaceHolder) {}
-            override fun surfaceChanged(surfaceHolder: SurfaceHolder, i: Int, i1: Int, i2: Int) {
-                SipServiceCommand.setupIncomingVideoFeed(
-                    this@CallActivity,
-                    mAccountID,
-                    mCallID,
-                    surfaceHolder.surface
-                )
-            }
-
-            override fun surfaceDestroyed(surfaceHolder: SurfaceHolder) {
-                SipServiceCommand.setupIncomingVideoFeed(
-                    this@CallActivity,
-                    mAccountID,
-                    mCallID,
-                    null
-                )
-            }
-        })
+        binding.tvOutCallInfo.text = String.format("You are calling %s", mNumber)
     }
 
     fun startActivityIn(
@@ -125,10 +103,6 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
         context.startActivity(intent)
     }
 
-    //    @OnClick([R.id.buttonAccept, R.id.buttonHangup, R.id.btnCancel, R.id.btnMuteMic, R.id.btnHangUp, R.id.btnSwitchCamera])
-    fun onViewClicked(view: View) {
-
-    }
 
     private fun showLayout(type: Int) {
         when (type) {
@@ -138,9 +112,9 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
                 binding.layoutConnected.visibility = View.GONE
             }
             TYPE_OUT_CALL -> {
-                binding.layoutIncomingCall.setVisibility(View.GONE)
-                binding.layoutOutCall.setVisibility(View.VISIBLE)
-                binding.layoutConnected.setVisibility(View.GONE)
+                binding.layoutIncomingCall.visibility = View.GONE
+                binding.layoutOutCall.visibility = View.VISIBLE
+                binding.layoutConnected.visibility = View.GONE
             }
             TYPE_CALL_CONNECTED -> {
                 binding.layoutIncomingCall.visibility = View.GONE
@@ -160,20 +134,8 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
         mReceiver.unregister(this)
     }
 
-    fun surfaceCreated(surfaceHolder: SurfaceHolder?) {
-        SipServiceCommand.startVideoPreview(
-            this@CallActivity,
-            mAccountID,
-            mCallID,
-            binding.svLocal.holder.surface
-        )
-    }
 
-    fun surfaceChanged(surfaceHolder: SurfaceHolder?, i: Int, i1: Int, i2: Int) {}
-
-    fun surfaceDestroyed(surfaceHolder: SurfaceHolder?) {}
-
-    var mReceiver: BroadcastEventReceiver = object : BroadcastEventReceiver() {
+    private var mReceiver: BroadcastEventReceiver = object : BroadcastEventReceiver() {
         override fun onIncomingCall(
             accountID: String,
             callID: Int,
@@ -184,11 +146,10 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
             super.onIncomingCall(accountID, callID, displayName, remoteUri, isVideo)
             Toast.makeText(
                 receiverContext,
-                String.format("收到 [%s] 的来电", remoteUri),
+                String.format("Received a call from [%s]", remoteUri),
                 Toast.LENGTH_SHORT
             ).show()
         }
-
 
 
         override fun onCallState(
@@ -200,32 +161,32 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
         ) {
             super.onCallState(accountID, callID, callStateCode, callStatusCode, connectTimestamp)
             when {
-                pjsip_inv_state.PJSIP_INV_STATE_CALLING.equals(callStateCode) -> {
+                pjsip_inv_state.PJSIP_INV_STATE_CALLING == callStateCode -> {
                     //呼出
                     binding.textViewCallState.text = "calling"
                 }
-                pjsip_inv_state.PJSIP_INV_STATE_INCOMING.equals(callStateCode) -> {
+                pjsip_inv_state.PJSIP_INV_STATE_INCOMING == callStateCode -> {
                     //来电
                     binding.textViewCallState.text = "incoming"
                 }
-                pjsip_inv_state.PJSIP_INV_STATE_EARLY.equals(callStateCode) -> {
+                pjsip_inv_state.PJSIP_INV_STATE_EARLY == callStateCode -> {
                     //响铃
                     binding.textViewCallState.text = "early"
                 }
-                pjsip_inv_state.PJSIP_INV_STATE_CONNECTING.equals(callStateCode) -> {
+                pjsip_inv_state.PJSIP_INV_STATE_CONNECTING == callStateCode -> {
                     //连接中
                     binding.textViewCallState.text = "connecting"
                 }
-                pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED.equals(callStateCode) -> {
+                pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED == callStateCode -> {
                     //连接成功
                     binding.textViewCallState.text = "confirmed"
                     showLayout(TYPE_CALL_CONNECTED)
                 }
-                pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED.equals(callStateCode) -> {
+                pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED == callStateCode -> {
                     //断开连接
                     finish()
                 }
-                pjsip_inv_state.PJSIP_INV_STATE_NULL.equals(callStateCode) -> {
+                pjsip_inv_state.PJSIP_INV_STATE_NULL == callStateCode -> {
                     //未知错误
                     Toast.makeText(receiverContext, "null", Toast.LENGTH_SHORT).show()
                     finish()
@@ -246,24 +207,12 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
         }
 //
 
-        override fun onStackStatus(started: Boolean) {
-            super.onStackStatus(started)
-        }
-
         override fun onReceivedCodecPriorities(codecPriorities: ArrayList<CodecPriority>) {
             super.onReceivedCodecPriorities(codecPriorities)
         }
 
-        override fun onCodecPrioritiesSetStatus(success: Boolean) {
-            super.onCodecPrioritiesSetStatus(success)
-        }
-
         override fun onMissedCall(displayName: String, uri: String) {
             super.onMissedCall(displayName, uri)
-        }
-
-        override fun onVideoSize(width: Int, height: Int) {
-            super.onVideoSize(width, height)
         }
 
 
@@ -304,8 +253,8 @@ class CallActivity : AppCompatActivity(),View.OnClickListener {
                 SipServiceCommand.hangUpCall(this, mAccountID, mCallID)
                 finish()
             }
-            R.id.btnSwitchCamera ->                 //切换摄像头
-                SipServiceCommand.switchVideoCaptureDevice(this, mAccountID, mCallID)
+//            R.id.btnSwitchCamera ->                 //切换摄像头
+//                SipServiceCommand.switchVideoCaptureDevice(this, mAccountID, mCallID)
         }
     }
 }

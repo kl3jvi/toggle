@@ -15,7 +15,6 @@ import com.toggle.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 import net.gotev.sipservice.BroadcastEventReceiver
 import net.gotev.sipservice.Logger
-import net.gotev.sipservice.SipServiceCommand
 import org.pjsip.pjsua2.pjsip_status_code
 
 
@@ -23,7 +22,6 @@ import org.pjsip.pjsua2.pjsip_status_code
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         mReceiver.unregister(this)
     }
+
     fun hideBottomNavBar() {
         binding.navView.animate().translationY(binding.navView.height.toFloat()).run {
             duration = 500
@@ -111,6 +110,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
 
 }

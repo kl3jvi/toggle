@@ -8,9 +8,11 @@
         <entry key="app/src/main/res/drawable/bottom_sheet_second.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/bottom_sheet_third.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/ic_big_logo.xml" value="0.216" />
+        <entry key="app/src/main/res/drawable/ic_end_call.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.1885" />
         <entry key="app/src/main/res/drawable/ic_first_slide.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable/ic_mic.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.251" />
         <entry key="app/src/main/res/drawable/ic_people.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_phone_in.xml" value="0.161" />

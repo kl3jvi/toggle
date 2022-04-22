@@ -22,7 +22,7 @@ class BackgroundService extends Service {
         PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getSimpleName());
 
-        mWakeLock.acquire();
+        mWakeLock.acquire(10*60*1000L /*10 minutes*/);
 
         mWorkerThread = new HandlerThread(getClass().getSimpleName(), Process.THREAD_PRIORITY_FOREGROUND);
         mWorkerThread.setPriority(Thread.MAX_PRIORITY);

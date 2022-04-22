@@ -102,7 +102,7 @@
                 android:scaleType="centerInside"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/ic_back_arrow"/>
+                android:src="@drawable/ic_mic"/>
 
             <ImageButton
                 android:id="@+id/btnHangUp"
@@ -111,19 +111,19 @@
                 android:scaleType="centerInside"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/ic_phone_out"
+                android:src="@drawable/ic_end_call"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Hang up" />
 
-            <ImageButton
-                android:src="@drawable/ic_back_arrow"
-                android:id="@+id/btnSwitchCamera"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:scaleType="centerInside"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
+<!--            <ImageButton-->
+<!--                android:src="@drawable/ic_back_arrow"-->
+<!--                android:id="@+id/btnSwitchCamera"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:scaleType="centerInside"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginRight="20dp"/>-->
 
         </LinearLayout>
 
