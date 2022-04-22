@@ -74,7 +74,6 @@ public class SipAccount extends Account {
     }
 
     public SipCall addOutgoingCall(final String numberToDial, boolean isVideo, boolean isVideoConference, boolean isTransfer) {
-
         // check if there's already an ongoing call
         int totalCalls = 0;
         for (SipAccount _sipAccount: SipService.getActiveSipAccounts().values()) {

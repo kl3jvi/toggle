@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Emits the sip service broadcast intents.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 public class BroadcastEventEmitter implements SipServiceConstants {
@@ -47,11 +48,12 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     /**
      * Emit an incoming call broadcast intent.
-     * @param accountID call's account IdUri
-     * @param callID call ID number
+     *
+     * @param accountID   call's account IdUri
+     * @param callID      call ID number
      * @param displayName the display name of the remote party
-     * @param remoteUri the IdUri of the remote party
-     * @param isVideo whether the call has video or not
+     * @param remoteUri   the IdUri of the remote party
+     * @param isVideo     whether the call has video or not
      */
     public void incomingCall(String accountID, int callID, String displayName, String remoteUri, boolean isVideo) {
         final Intent intent = new Intent();
@@ -69,7 +71,8 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     /**
      * Emit a registration state broadcast intent.
-     * @param accountID account IdUri
+     *
+     * @param accountID             account IdUri
      * @param registrationStateCode SIP registration status code
      */
     public void registrationState(String accountID, int registrationStateCode) {
@@ -84,10 +87,11 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     /**
      * Emit a call state broadcast intent.
-     * @param accountID call's account IdUri
-     * @param callID call ID number
-     * @param callStateCode SIP call state code
-     * @param callStateStatus SIP call state status
+     *
+     * @param accountID        call's account IdUri
+     * @param callID           call ID number
+     * @param callStateCode    SIP call state code
+     * @param callStateStatus  SIP call state status
      * @param connectTimestamp call start timestamp
      */
     public synchronized void callState(String accountID, int callID, int callStateCode, int callStateStatus, long connectTimestamp) {
@@ -105,30 +109,31 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     /**
      * Emit a call state broadcast intent.
+     *
      * @param accountID call's account IdUri
-     * @param callID call ID number
-     * @param state MediaState state updated
-     * @param value call media state update value
+     * @param callID    call ID number
+     * @param state     MediaState state updated
+     * @param value     call media state update value
      */
     public synchronized void callMediaState(String accountID, int callID, MediaState state, boolean value) {
         final Intent intent = new Intent()
-            .setAction(getAction(BroadcastAction.CALL_MEDIA_STATE))
-            .putExtra(PARAM_ACCOUNT_ID, accountID)
-            .putExtra(PARAM_CALL_ID, callID)
-            .putExtra(PARAM_MEDIA_STATE_KEY, state)
-            .putExtra(PARAM_MEDIA_STATE_VALUE, value);
+                .setAction(getAction(BroadcastAction.CALL_MEDIA_STATE))
+                .putExtra(PARAM_ACCOUNT_ID, accountID)
+                .putExtra(PARAM_CALL_ID, callID)
+                .putExtra(PARAM_MEDIA_STATE_KEY, state)
+                .putExtra(PARAM_MEDIA_STATE_VALUE, value);
         mContext.sendBroadcast(intent);
     }
 
     public void outgoingCall(String accountID, int callID, String number, boolean isVideo, boolean isVideoConference, boolean isTransfer) {
         final Intent intent = new Intent()
-            .setAction(getAction(BroadcastAction.OUTGOING_CALL))
-            .putExtra(PARAM_ACCOUNT_ID, accountID)
-            .putExtra(PARAM_CALL_ID, callID)
-            .putExtra(PARAM_NUMBER, number)
-            .putExtra(PARAM_IS_VIDEO, isVideo)
-            .putExtra(PARAM_IS_VIDEO_CONF, isVideoConference)
-            .putExtra(PARAM_IS_TRANSFER, isTransfer);
+                .setAction(getAction(BroadcastAction.OUTGOING_CALL))
+                .putExtra(PARAM_ACCOUNT_ID, accountID)
+                .putExtra(PARAM_CALL_ID, callID)
+                .putExtra(PARAM_NUMBER, number)
+                .putExtra(PARAM_IS_VIDEO, isVideo)
+                .putExtra(PARAM_IS_VIDEO_CONF, isVideoConference)
+                .putExtra(PARAM_IS_TRANSFER, isTransfer);
         sendExplicitBroadcast(intent);
     }
 
@@ -181,13 +186,13 @@ public class BroadcastEventEmitter implements SipServiceConstants {
 
     void callStats(int callID, int duration, String audioCodec, int callStateStatus, RtpStreamStats rx, RtpStreamStats tx) {
         final Intent intent = new Intent()
-            .setAction(getAction(BroadcastAction.CALL_STATS))
-            .putExtra(PARAM_CALL_ID, callID)
-            .putExtra(PARAM_CALL_STATS_DURATION, duration)
-            .putExtra(PARAM_CALL_STATS_AUDIO_CODEC, audioCodec)
-            .putExtra(PARAM_CALL_STATS_CALL_STATUS, callStateStatus)
-            .putExtra(PARAM_CALL_STATS_RX_STREAM, rx)
-            .putExtra(PARAM_CALL_STATS_TX_STREAM, tx);
+                .setAction(getAction(BroadcastAction.CALL_STATS))
+                .putExtra(PARAM_CALL_ID, callID)
+                .putExtra(PARAM_CALL_STATS_DURATION, duration)
+                .putExtra(PARAM_CALL_STATS_AUDIO_CODEC, audioCodec)
+                .putExtra(PARAM_CALL_STATS_CALL_STATUS, callStateStatus)
+                .putExtra(PARAM_CALL_STATS_RX_STREAM, rx)
+                .putExtra(PARAM_CALL_STATS_TX_STREAM, tx);
         mContext.sendBroadcast(intent);
     }
 
@@ -199,13 +204,12 @@ public class BroadcastEventEmitter implements SipServiceConstants {
     }
 
     private boolean sendExplicitBroadcast(Intent intent) {
-        PackageManager pm=mContext.getPackageManager();
-        List<ResolveInfo> matches=pm.queryBroadcastReceivers(intent, 0);
+        PackageManager pm = mContext.getApplicationContext().getPackageManager();
+        List<ResolveInfo> matches = pm.queryBroadcastReceivers(intent, 0);
         boolean sent = false;
 
         for (ResolveInfo resolveInfo : matches) {
-            ComponentName cn=
-                    new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName,
+            ComponentName cn= new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName,
                             resolveInfo.activityInfo.name);
 
             intent.setComponent(cn);
@@ -213,6 +217,7 @@ public class BroadcastEventEmitter implements SipServiceConstants {
             mContext.sendBroadcast(intent);
             sent = true;
         }
+        mContext.sendBroadcast(intent);
         return sent;
     }
 }

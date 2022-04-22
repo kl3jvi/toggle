@@ -184,15 +184,16 @@ public class BroadcastEventEmitter implements SipServiceConstants {
         PackageManager pm=mContext.getPackageManager();
         List<ResolveInfo> matches=pm.queryBroadcastReceivers(intent, 0);
         boolean sent = false;
-
+        intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+        mContext.sendBroadcast(intent);
 //        for (ResolveInfo resolveInfo : matches) {
 //            ComponentName cn=
 //                    new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName,
 //                            resolveInfo.activityInfo.name);
 //
 //            intent.setComponent(cn);
-            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
-            mContext.sendBroadcast(intent);
+//            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+//            mContext.sendBroadcast(intent);
 //            sent = true;
 //        }
         return sent;

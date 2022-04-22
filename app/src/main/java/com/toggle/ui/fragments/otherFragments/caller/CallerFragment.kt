@@ -8,13 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.toggle.R
 import com.toggle.databinding.CallerFragmentBinding
-import com.toggle.utils.HOST
 import com.toggle.utils.NetworkUtils.isConnectedToInternet
 import com.toggle.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import net.gotev.sipservice.SipAccountData
 import net.gotev.sipservice.SipServiceCommand
-
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 
@@ -35,7 +33,7 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
         binding.dialer.withModels { buildDial(binding.callNumber) }
         binding.callButton.setOnClickListener {
             if (binding.callNumber.text.isNotEmpty() && binding.callNumber.text.length < 5)
-                makeCallWithPermissionCheck("sip:09818842864@pbx.toggle.com.co:5061")
+                makeCallWithPermissionCheck("sip:${binding.callNumber.text}")
         }
         login()
     }
@@ -55,13 +53,14 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
     lateinit var mAccountId: String
 
     fun login() {
-        val psipId = "288636334"
+        val psipId = "kristileka"
         mAccount = SipAccountData()
-        mAccount.host = HOST
-        mAccount.realm = "*" //realm指的是：sip:1004@192.168.2.243中的192.168.2.243
-        mAccount.port = 5061
+        mAccount.host = "sip.linphone.org"
+        mAccount.realm = "sip.linphone.org" //realm指的是：sip:1004@192.168.2.243中的192.168.2.243
+        mAccount
         mAccount.username = psipId
-        mAccount.password = psipId
+        mAccount.password = "Test123"
+        mAccount.isTcpTransport = true
         mAccountId = SipServiceCommand.setAccount(requireContext(), mAccount)
         Log.i("MainActivity.TAG", "login: $mAccountId")
     }
@@ -69,7 +68,13 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
     @NeedsPermission(Manifest.permission.RECORD_AUDIO)
     fun makeCall(callNumber: String) {
         try {
-            SipServiceCommand.makeCall(requireContext(), mAccountId, callNumber, false, false)
+            SipServiceCommand.makeCall(
+                requireContext(),
+                mAccountId,
+                "sip:kl3jvi@sip.linphone.org",
+                false,
+                false
+            )
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -84,6 +89,11 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
         isConnectedToInternet(viewLifecycleOwner) { isConnected ->
 //            if (!isConnected) MyApp().handleNetworkChange()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+//        SipServiceCommand.removeAccount(requireContext(), mAccountId)
     }
 
 }
