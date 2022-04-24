@@ -145,4 +145,7 @@ dependencies {
     implementation "com.airbnb.android:epoxy-databinding:$epoxyVersion"
     implementation "com.airbnb.android:epoxy-paging3:$epoxyVersion"
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+
+    def current_version = "1.4.0"
+    implementation "io.karn:notify:$current_version"
 }

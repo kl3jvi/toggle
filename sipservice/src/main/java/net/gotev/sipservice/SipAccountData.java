@@ -2,6 +2,7 @@ package net.gotev.sipservice;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import org.pjsip.pjsua2.AccountConfig;
 import org.pjsip.pjsua2.AuthCredInfo;
@@ -12,6 +13,7 @@ import java.util.Objects;
 
 /**
  * Contains the account's configuration data.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 @SuppressWarnings("unused")
@@ -32,7 +34,8 @@ public class SipAccountData implements Parcelable {
     private String guestDisplayName = "";
     private String callId = "";
 
-    public SipAccountData() { }
+    public SipAccountData() {
+    }
 
     /*****          Parcelable overrides        ******/
     public static final Parcelable.Creator<SipAccountData> CREATOR =
@@ -147,21 +150,19 @@ public class SipAccountData implements Parcelable {
         return this;
     }
 
-    public SipAccountData setContactUriParams(String contactUriParams){
+    public void setContactUriParams(String contactUriParams) {
         this.contactUriParams = contactUriParams;
-        return this;
     }
 
-    public String getContactUriParams(){
+    public String getContactUriParams() {
         return contactUriParams;
     }
 
-    public SipAccountData setRegExpirationTimeout(int regExpirationTimeout){
+    public void setRegExpirationTimeout(int regExpirationTimeout) {
         this.regExpirationTimeout = regExpirationTimeout;
-        return this;
     }
 
-    public int getRegExpirationTimeout(){
+    public int getRegExpirationTimeout() {
         return this.regExpirationTimeout;
     }
 
@@ -199,12 +200,11 @@ public class SipAccountData implements Parcelable {
 
     String getProxyUri() {
         StringBuilder proxyUri = new StringBuilder();
-
         proxyUri.append("sip:").append(host).append(":").append(port);
-
         if (tcpTransport) {
             proxyUri.append(";transport=tcp");
         }
+        Log.e("proxy",proxyUri.toString());
 
         return proxyUri.toString();
     }
@@ -254,7 +254,7 @@ public class SipAccountData implements Parcelable {
         accountConfig.getMediaConfig().getTransportConfig().setQosType(pj_qos_type.PJ_QOS_TYPE_VIDEO);
         String idUri = getGuestDisplayName().isEmpty()
                 ? getIdUri()
-                : "\""+getGuestDisplayName()+"\" <"+getIdUri()+">";
+                : "\"" + getGuestDisplayName() + "\" <" + getIdUri() + ">";
         accountConfig.setIdUri(idUri);
         accountConfig.getSipConfig().getProxies().add(getProxyUri());
         accountConfig.getRegConfig().setRegisterOnAdd(false);

@@ -46,8 +46,8 @@ class BackgroundService extends Service {
         mHandler.post(job);
     }
 
-    protected void enqueueDelayedJob(Runnable job, long delayMillis) {
-        mHandler.postDelayed(job, delayMillis);
+    protected void enqueueDelayedJob(Runnable job) {
+        mHandler.postDelayed(job, SipServiceConstants.DELAYED_JOB_DEFAULT_DELAY);
     }
 
     protected void dequeueJob(Runnable job) {

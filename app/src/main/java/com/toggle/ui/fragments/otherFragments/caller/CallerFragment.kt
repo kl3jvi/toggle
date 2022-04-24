@@ -10,6 +10,8 @@ import com.toggle.R
 import com.toggle.databinding.CallerFragmentBinding
 import com.toggle.utils.HOST
 import com.toggle.utils.NetworkUtils.isConnectedToInternet
+import com.toggle.utils.PORT
+import com.toggle.utils.SIP_URI
 import com.toggle.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import net.gotev.sipservice.SipAccountData
@@ -33,6 +35,7 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
     private fun initViews() {
         binding.dialer.withModels { buildDial(binding.callNumber) }
         binding.callButton.setOnClickListener {
+
             if (binding.callNumber.text.isNotEmpty() && binding.callNumber.text.length < 5)
                 makeCallWithPermissionCheck("sip:${binding.callNumber.text}")
         }
@@ -50,18 +53,17 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
     }
 
 
-    lateinit var mAccount: SipAccountData
-    lateinit var mAccountId: String
+    private lateinit var mAccount: SipAccountData
+    private lateinit var mAccountId: String
 
     fun login() {
         val psipId = "kl3jvi"
         mAccount = SipAccountData()
         mAccount.host = "sip.linphone.org"
         mAccount.realm = "sip.linphone.org" //realm指的是：sip:1004@192.168.2.243中的192.168.2.243
-
         mAccount.username = psipId
         mAccount.password = "kl3jvi!@#"
-        mAccount.isTcpTransport = true
+        mAccount.isTcpTransport = false
         mAccountId = SipServiceCommand.setAccount(requireContext(), mAccount)
         Log.i("MainActivity.TAG", "login: $mAccountId")
     }

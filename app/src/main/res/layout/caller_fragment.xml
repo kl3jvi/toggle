@@ -7,33 +7,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <Button-->
-<!--            android:id="@+id/button_start"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Start"-->
-<!--            app:layout_constraintBaseline_toBaselineOf="@+id/button_call"-->
-<!--            app:layout_constraintStart_toStartOf="parent" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/button_call"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Call"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/button_start"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
         <TextView
             android:id="@+id/callNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="+123456789"
             android:maxLines="1"
             android:textColor="@color/secondaryTextColor"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/dialer"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="+123456789" />
 
         <com.airbnb.epoxy.EpoxyRecyclerView
             android:id="@+id/dialer"
@@ -41,22 +25,25 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_10"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/callButton"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/callNumber"
             app:spanCount="3"
             tools:listitem="@layout/item_dial_button" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="75dp"
             android:id="@+id/callButton"
+            android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_margin="@dimen/dp_10"
             android:background="?selectableItemBackgroundBorderless"
             app:cardBackgroundColor="@color/greenish"
             app:cardCornerRadius="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dialer">
 

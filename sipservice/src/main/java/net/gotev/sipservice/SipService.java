@@ -1,5 +1,8 @@
 package net.gotev.sipservice;
 
+import static net.gotev.sipservice.ObfuscationHelper.getValue;
+import static net.gotev.sipservice.SipServiceCommand.AGENT_NAME;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,14 +33,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static net.gotev.sipservice.ObfuscationHelper.getValue;
-import static net.gotev.sipservice.SipServiceCommand.AGENT_NAME;
-
 /**
  * Sip Service.
+ *
  * @author gotev (Aleksandar Gotev)
  */
 public class SipService extends BackgroundService implements SipServiceConstants {
@@ -87,7 +89,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
             if (action == null) return;
 
-            switch(action) {
+            switch (action) {
                 case ACTION_SET_ACCOUNT:
                     handleSetAccount(intent);
                     break;
@@ -178,7 +180,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
                 case ACTION_RECONNECT_CALL:
                     handleReconnectCall();
                     break;
-                default: break;
+                default:
+                    break;
             }
 
             if (mConfiguredAccounts.isEmpty() && mConfiguredGuestAccount == null) {
@@ -244,11 +247,11 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
         SipCall sipCall = getCall(accountID, callID);
         if (sipCall != null) {
-             try {
+            try {
                 sipCall.dialDtmf(dtmf);
             } catch (Exception exc) {
                 Logger.error(TAG, "Error while dialing dtmf: " + dtmf + ". AccountID: "
-                             + getValue(getApplicationContext(), accountID) + ", CallID: " + callID);
+                        + getValue(getApplicationContext(), accountID) + ", CallID: " + callID);
             }
         }
     }
@@ -566,7 +569,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
         boolean isTransfer = false;
         if (isVideo) {
             isVideoConference = intent.getBooleanExtra(PARAM_IS_VIDEO_CONF, false);
-        // do not allow attended transfer on video call for now
+            // do not allow attended transfer on video call for now
         } else {
             isTransfer = intent.getBooleanExtra(PARAM_IS_TRANSFER, false);
         }
@@ -574,7 +577,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
         Logger.debug(TAG, "Making call to " + getValue(getApplicationContext(), number));
 
         try {
-            SipCall call = mActiveSipAccounts.get(accountID).addOutgoingCall(number, isVideo, isVideoConference, isTransfer);
+            SipCall call = Objects.requireNonNull(mActiveSipAccounts.get(accountID)).addOutgoingCall(number, isVideo, isVideoConference, isTransfer);
             call.setVideoParams(isVideo, isVideoConference);
             mBroadcastEmitter.outgoingCall(accountID, call.getId(), number, isVideo, isVideoConference, isTransfer);
         } catch (Exception exc) {
@@ -597,8 +600,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
         }
 
         Logger.debug(TAG, "Making call to " + getValue(getApplicationContext(), uri.getUserInfo()));
-        String accountID = "sip:"+name+"@"+uri.getHost();
-        String sipUri = "sip:" + uri.getUserInfo()+"@"+uri.getHost();
+        String accountID = "sip:" + name + "@" + uri.getHost();
+        String sipUri = "sip:" + uri.getUserInfo() + "@" + uri.getHost();
 
         try {
             startStack();
@@ -617,7 +620,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             // Overwrite the old value if present
             mActiveSipAccounts.put(accountID, pjSipAndroidAccount);
 
-            SipCall call = mActiveSipAccounts.get(accountID).addOutgoingCall(sipUri, isVideo, isVideoConference, false);
+            SipCall call = Objects.requireNonNull(mActiveSipAccounts.get(accountID)).addOutgoingCall(sipUri, isVideo, isVideoConference, false);
             if (call != null) {
                 call.setVideoParams(isVideo, isVideoConference);
                 mBroadcastEmitter.outgoingCall(accountID, call.getId(), uri.getUserInfo(), isVideo, isVideoConference, false);
@@ -652,7 +655,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
         int regExpTimeout = intent.getIntExtra(PARAM_REG_EXP_TIMEOUT, 0);
         String regContactParams = intent.getStringExtra(PARAM_REG_CONTACT_PARAMS);
         boolean refresh = true;
-        if (!mActiveSipAccounts.isEmpty() && mActiveSipAccounts.containsKey(accountID)){
+        if (!mActiveSipAccounts.isEmpty() && mActiveSipAccounts.containsKey(accountID)) {
             try {
                 SipAccount sipAccount = mActiveSipAccounts.get(accountID);
                 if (sipAccount == null) return;
@@ -682,7 +685,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
                 ex.printStackTrace();
             }
         } else {
-            Logger.debug(TAG, "account "+getValue(getApplicationContext(), accountID)+" not set");
+            Logger.debug(TAG, "account " + getValue(getApplicationContext(), accountID) + " not set");
         }
     }
 
@@ -754,13 +757,14 @@ public class SipService extends BackgroundService implements SipServiceConstants
             Logger.debug(TAG, "Reconfiguring " + getValue(getApplicationContext(), data.getIdUri()));
 
             try {
-                //removeAccount(data.getIdUri());
+//                removeAccount(data.getIdUri());
                 handleSetCodecPriorities(intent);
                 addAccount(data);
                 mConfiguredAccounts.set(index, data);
                 persistConfiguredAccounts();
             } catch (Exception exc) {
-                Logger.error(TAG, "Error while reconfiguring " + getValue(getApplicationContext(), data.getIdUri()), exc);
+                Logger.error(TAG, "Error while reconfiguring "
+                        + getValue(getApplicationContext(), data.getIdUri()), exc);
             }
         }
     }
@@ -775,6 +779,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
         SipAccount account = mActiveSipAccounts.get(accountID);
         try {
+            assert account != null;
             mBroadcastEmitter.registrationState(accountID, account.getInfo().getRegStatus());
         } catch (Exception exc) {
             Logger.error(TAG, "Error while getting registration status for " + getValue(getApplicationContext(), accountID), exc);
@@ -860,7 +865,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             } else {
                 mEndpoint.codecSetPriority("OPUS", (short) (CodecPriority.PRIORITY_MAX - 1));
                 mEndpoint.codecSetPriority("PCMA/8000", (short) (CodecPriority.PRIORITY_MAX - 2));
-                mEndpoint.codecSetPriority("PCMU/8000", (short) (CodecPriority.PRIORITY_MAX -3));
+                mEndpoint.codecSetPriority("PCMU/8000", (short) (CodecPriority.PRIORITY_MAX - 3));
                 mEndpoint.codecSetPriority("G729/8000", (short) CodecPriority.PRIORITY_DISABLED);
                 mEndpoint.codecSetPriority("speex/8000", (short) CodecPriority.PRIORITY_DISABLED);
                 mEndpoint.codecSetPriority("speex/16000", (short) CodecPriority.PRIORITY_DISABLED);
@@ -959,7 +964,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
             for (int i = 0; i < codecs.size(); i++) {
                 CodecInfo codecInfo = codecs.get(i);
                 CodecPriority newCodec = new CodecPriority(codecInfo.getCodecId(),
-                                                           codecInfo.getPriority());
+                        codecInfo.getPriority());
                 if (!codecPrioritiesList.contains(newCodec))
                     codecPrioritiesList.add(newCodec);
                 codecInfo.delete();
@@ -1004,7 +1009,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
             for (CodecPriority codecPriority : codecPriorities) {
                 mEndpoint.codecSetPriority(codecPriority.getCodecId(), (short) codecPriority.getPriority());
-                log.append(codecPriority.toString()).append("\n");
+                log.append(codecPriority).append("\n");
             }
 
             persistConfiguredCodecPriorities(codecPriorities);
@@ -1044,6 +1049,7 @@ public class SipService extends BackgroundService implements SipServiceConstants
 
     /**
      * Adds a new SIP Account and performs initial registration.
+     *
      * @param account SIP account to add
      */
     private void addAccount(SipAccountData account) throws Exception {

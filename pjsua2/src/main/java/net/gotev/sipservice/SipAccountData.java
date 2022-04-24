@@ -198,9 +198,7 @@ public class SipAccountData implements Parcelable {
 
     String getProxyUri() {
         StringBuilder proxyUri = new StringBuilder();
-
         proxyUri.append("sip:").append(host).append(":").append(port);
-
         if (tcpTransport) {
             proxyUri.append(";transport=tcp");
         }

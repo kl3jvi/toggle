@@ -13,6 +13,7 @@ import com.toggle.databinding.ActivityMainBinding
 import com.toggle.utils.hide
 import com.toggle.utils.show
 import dagger.hilt.android.AndroidEntryPoint
+import io.karn.notify.Notify
 import net.gotev.sipservice.BroadcastEventReceiver
 import net.gotev.sipservice.Logger
 import org.pjsip.pjsua2.pjsip_status_code
@@ -79,6 +80,18 @@ class MainActivity : AppCompatActivity() {
         ) {
             super.onIncomingCall(accountID, callID, displayName, remoteUri, isVideo)
             Log.e("Incoming call", "---------$accountID")
+            val channelKey = "highPriority"
+            Notify.with(receiverContext)
+
+                .content { // this: Payload.Content.Default
+                    title = "Incoming Call"
+                    text = displayName
+                }.alerting(channelKey) {
+                    // Set (notification) channel importance to one of the IMPORTANCE constants.
+                    channelImportance = Notify.IMPORTANCE_MAX
+                }
+                .show()
+
             CallActivity().startActivityIn(
                 receiverContext,
                 accountID,
