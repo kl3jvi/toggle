@@ -1,12 +1,12 @@
 package net.gotev.sipservice;
 
 import static net.gotev.sipservice.ObfuscationHelper.getValue;
-import static net.gotev.sipservice.SipServiceCommand.AGENT_NAME;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.Surface;
 
 import org.pjsip.pjsua2.AudDevManager;
@@ -836,7 +836,8 @@ public class SipService extends BackgroundService implements SipServiceConstants
             mEndpoint.libCreate();
 
             EpConfig epConfig = new EpConfig();
-            epConfig.getUaConfig().setUserAgent(AGENT_NAME);
+            epConfig.getUaConfig().setUserAgent("clay_Web_Client");
+            Log.e("user-agent", epConfig.getUaConfig().getUserAgent());
             epConfig.getMedConfig().setHasIoqueue(true);
             epConfig.getMedConfig().setClockRate(16000);
             epConfig.getMedConfig().setQuality(10);

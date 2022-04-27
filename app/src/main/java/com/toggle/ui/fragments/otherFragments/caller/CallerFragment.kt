@@ -6,12 +6,11 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.toggle.R
 import com.toggle.databinding.CallerFragmentBinding
 import com.toggle.utils.HOST
 import com.toggle.utils.NetworkUtils.isConnectedToInternet
-import com.toggle.utils.PORT
-import com.toggle.utils.SIP_URI
 import com.toggle.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import net.gotev.sipservice.SipAccountData
@@ -22,6 +21,9 @@ import permissions.dispatcher.RuntimePermissions
 @RuntimePermissions
 @AndroidEntryPoint
 class CallerFragment : Fragment(R.layout.caller_fragment) {
+
+    private lateinit var mAccount: SipAccountData
+    private lateinit var mAccountId: String
 
     private val viewModel: CallerViewModel by viewModels()
     private val binding: CallerFragmentBinding by viewBinding()
@@ -52,17 +54,14 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
         onRequestPermissionsResult(requestCode, grantResults)
     }
 
-
-    private lateinit var mAccount: SipAccountData
-    private lateinit var mAccountId: String
-
     fun login() {
-        val psipId = "kl3jvi"
+        val pjsipId = "804891331"
         mAccount = SipAccountData()
-        mAccount.host = "sip.linphone.org"
-        mAccount.realm = "sip.linphone.org" //realm指的是：sip:1004@192.168.2.243中的192.168.2.243
-        mAccount.username = psipId
-        mAccount.password = "kl3jvi!@#"
+        mAccount.host = HOST
+        mAccount.realm = "*"
+        mAccount.port = 5060
+        mAccount.username = pjsipId
+        mAccount.password = pjsipId
         mAccount.isTcpTransport = false
         mAccountId = SipServiceCommand.setAccount(requireContext(), mAccount)
         Log.i("MainActivity.TAG", "login: $mAccountId")
@@ -74,7 +73,7 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
             SipServiceCommand.makeCall(
                 requireContext(),
                 mAccountId,
-                "sip:kristileka@sip.linphone.org",
+                "sip:09818842864@$HOST",
                 false,
                 false
             )
@@ -90,8 +89,17 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
 
     private fun handleNetworkState() {
         isConnectedToInternet(viewLifecycleOwner) { isConnected ->
-//            if (!isConnected) MyApp().handleNetworkChange()
+            if (!isConnected)
+                showSnack("Network Error!")
         }
+    }
+
+    private fun showSnack(message: String) {
+        Snackbar.make(
+            binding.root,
+            message,
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
     override fun onDestroy() {

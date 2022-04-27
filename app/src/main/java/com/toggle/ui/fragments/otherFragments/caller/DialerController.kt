@@ -31,7 +31,7 @@ fun EpoxyController.buildDial(tv: TextView) {
             if (i in 2..9) {
                 digits(stringList[i - 2])
             }
-            clickListener { v ->
+            clickListener { _ ->
                 when (i) {
                     10 -> tv.append("*")
                     11 -> tv.append(0.toString())

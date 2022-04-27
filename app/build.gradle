@@ -52,7 +52,7 @@ dependencies {
     implementation project(path: ':sipservice')
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    def navigationComponentVersion = "2.5.0-alpha03"
+    def navigationComponentVersion = "2.5.0-beta01"
     implementation "androidx.navigation:navigation-runtime-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationComponentVersion"
@@ -69,26 +69,26 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
     def livedataVersion = "2.4.1"
-    def viewModelVersion = "2.4.1"
+    def viewModelVersion = "2.5.0-beta01"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
 
-    def fragmentVersion = "1.5.0-alpha04"
+    def fragmentVersion = "1.5.0-beta01"
     implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
     // by viewModels() delegate provider
 
-    def lifecycle_version = "2.5.0-alpha05"
+    def lifecycle_version = "2.5.0-beta01"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     // Coroutines
-    def coroutinesVersion = "1.6.0"
+    def coroutinesVersion = "1.6.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
 
 
     // Retrofit
     def retrofitVersion = "2.9.0"
-    def interceptor_version = "5.0.0-alpha.3"
+    def interceptor_version = "5.0.0-alpha.4"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$interceptor_version"

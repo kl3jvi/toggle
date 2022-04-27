@@ -134,7 +134,7 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
         context.unregisterReceiver(this);
     }
 
-    public void onRegistration(String accountID, pjsip_status_code registrationStateCode) {
+    public void onRegistration(String accountID, int registrationStateCode) {
         Logger.debug(LOG_TAG, "onRegistration - accountID: " + accountID +
                 ", registrationStateCode: " + registrationStateCode);
     }

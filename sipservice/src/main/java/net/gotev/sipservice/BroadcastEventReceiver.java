@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import static net.gotev.sipservice.ObfuscationHelper.getValue;
 
+import org.pjsip.pjsua2.pjsip_status_code;
+
 /**
  * Reference implementation to receive events emitted by the sip service.
  * @author gotev (Aleksandar Gotev)
@@ -32,7 +34,6 @@ public class BroadcastEventReceiver extends BroadcastReceiver implements SipServ
         if (BroadcastEventEmitter.getAction(BroadcastEventEmitter.BroadcastAction.REGISTRATION).equals(action)) {
             int stateCode = intent.getIntExtra(PARAM_REGISTRATION_CODE, -1);
             onRegistration(intent.getStringExtra(PARAM_ACCOUNT_ID), stateCode);
-
         } else if (BroadcastEventEmitter.getAction(BroadcastEventEmitter.BroadcastAction.INCOMING_CALL).equals(action)) {
             onIncomingCall(intent.getStringExtra(PARAM_ACCOUNT_ID),
                     intent.getIntExtra(PARAM_CALL_ID, -1),

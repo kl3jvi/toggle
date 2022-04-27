@@ -36,7 +36,6 @@ public class SipAccountData implements Parcelable {
 
     public SipAccountData() {
     }
-
     /*****          Parcelable overrides        ******/
     public static final Parcelable.Creator<SipAccountData> CREATOR =
             new Parcelable.Creator<SipAccountData>() {
