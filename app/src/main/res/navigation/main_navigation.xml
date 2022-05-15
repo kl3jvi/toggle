@@ -42,13 +42,31 @@
         tools:layout="@layout/call_history_fragment">
         <action
             android:id="@+id/action_callHistoryFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_keypad"
         android:name="com.toggle.ui.fragments.otherFragments.caller.CallerFragment"
-        android:label="CallerFragment" />
+        android:label="CallerFragment">
+        <action
+            android:id="@+id/placeholder"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_people"
+        android:name="com.toggle.ui.fragments.otherFragments.people.PeopleFragment"
+        android:label="people_fragment"
+        tools:layout="@layout/people_fragment" />
 
     <!--    <fragment-->
     <!--        android:id="@+id/navigation_history"-->

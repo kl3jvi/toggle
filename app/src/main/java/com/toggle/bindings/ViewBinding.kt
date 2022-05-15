@@ -12,6 +12,14 @@ import coil.request.CachePolicy
 import com.toggle.R
 
 object ViewBinding {
+    /**
+     * It sets the image of the imageview and the background color of the cardview based on the type of
+     * the call.
+     *
+     * @param image ImageView - The ImageView that will be used to display the image.
+     * @param type The type of call, either incoming or outgoing.
+     * @param cardView The CardView that will be used to display the call log.
+     */
     @JvmStatic
     @BindingAdapter("image", "cardBgColor")
     fun setImage(image: ImageView, type: String?, cardView: CardView) {
@@ -50,7 +58,6 @@ object ViewBinding {
             crossfade(true)
             diskCachePolicy(CachePolicy.ENABLED)
         }
-
     }
 
     @JvmStatic
@@ -74,6 +81,14 @@ object ViewBinding {
         }
     }
 
+    /**
+     * setVisibility() is a function that takes a `View` and a `Boolean` and
+     * sets the visibility of the `View` to `true` if the `Boolean` is `true` and `false` if the
+     * `Boolean` is `false`
+     *
+     * @param view View - The view that we are setting the visibility on.
+     * @param isVisible Boolean? = false
+     */
     @JvmStatic
     @BindingAdapter("booleanVisibility")
     fun setVisibility(view: View, isVisible: Boolean? = false) {

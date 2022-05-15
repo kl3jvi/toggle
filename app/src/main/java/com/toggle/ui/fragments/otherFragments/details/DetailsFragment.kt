@@ -51,6 +51,9 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
     }
 
 
+    /**
+     * It hides the bottom navigation bar when the fragment is resumed.
+     */
     override fun onResume() {
         super.onResume()
         if (requireActivity() is MainActivity) {

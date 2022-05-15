@@ -57,6 +57,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_bar" />
+        <Constraint
+            app:layout_editor_absoluteY="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/toggle_button_group"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </ConstraintSet>
 

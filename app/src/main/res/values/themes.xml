@@ -62,6 +62,13 @@
         <item name="bottomSheetStyle">@style/ModalBottomSheet</item>
     </style>
 
+    <style name="ThemeOverlay.SearchView" parent="">
+        <item name="android:editTextColor">@color/primaryTextColor</item>
+        <item name="android:textColorHint">@color/hintTextColor</item>
+        <item name="closeIconTint">@color/secondaryTextColor</item>
+    </style>
+
+
     <dimen name="dialpad_text_size">30sp</dimen>
     <dimen name="smaller_text_size">12sp</dimen>
 

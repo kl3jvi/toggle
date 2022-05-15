@@ -11,6 +11,10 @@ open class BackgroundService : Service() {
     private lateinit var mHandler: Handler
     private lateinit var mWakeLock: PowerManager.WakeLock
 
+    /**
+     * We create a new wakelock, acquire it, and then create a new HandlerThread with a priority of
+     * Thread.MAX_PRIORITY
+     */
     override fun onCreate() {
         super.onCreate()
 

@@ -11,6 +11,7 @@ import com.toggle.R
 import com.toggle.databinding.CallerFragmentBinding
 import com.toggle.utils.HOST
 import com.toggle.utils.NetworkUtils.isConnectedToInternet
+import com.toggle.utils.PORT
 import com.toggle.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import net.gotev.sipservice.SipAccountData
@@ -39,7 +40,7 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
         binding.callButton.setOnClickListener {
 
             if (binding.callNumber.text.isNotEmpty() && binding.callNumber.text.length < 5)
-                makeCallWithPermissionCheck("sip:${binding.callNumber.text}")
+                makeCallWithPermissionCheck(binding.callNumber.text.toString())
         }
         login()
     }
@@ -54,26 +55,41 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
         onRequestPermissionsResult(requestCode, grantResults)
     }
 
+    /*
+        Sip identity: kl3jvi@sip.linphone.org
+        Username: kl3jvi
+        Email: klejvisiper@gmail.com
+        Domain/Proxy: sip.linphone.org
+     */
+
+    /**
+     * It creates a SIP account and logs in.
+     */
     fun login() {
-        val pjsipId = "804891331"
+        val pjsipId = "kl3jvi"
         mAccount = SipAccountData()
-        mAccount.host = HOST
-        mAccount.realm = "*"
+        mAccount.host = "sip.linphone.org"
+        mAccount.realm = "sip.linphone.org"
         mAccount.port = 5060
         mAccount.username = pjsipId
-        mAccount.password = pjsipId
+        mAccount.password = "kl3jvi!@#"
         mAccount.isTcpTransport = false
         mAccountId = SipServiceCommand.setAccount(requireContext(), mAccount)
         Log.i("MainActivity.TAG", "login: $mAccountId")
     }
 
+    /**
+     * It makes a call to the number passed as a parameter.
+     *
+     * @param callNumber The number you want to call.
+     */
     @NeedsPermission(Manifest.permission.RECORD_AUDIO)
     fun makeCall(callNumber: String) {
         try {
             SipServiceCommand.makeCall(
                 requireContext(),
-                mAccountId,
-                "sip:09818842864@$HOST",
+                "sip:804891331@pbx.toggle.com.co",
+                "sip:$callNumber@$HOST",
                 false,
                 false
             )
@@ -87,6 +103,9 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
         handleNetworkState()
     }
 
+    /**
+     * It checks if the device is connected to the internet or not.
+     */
     private fun handleNetworkState() {
         isConnectedToInternet(viewLifecycleOwner) { isConnected ->
             if (!isConnected)

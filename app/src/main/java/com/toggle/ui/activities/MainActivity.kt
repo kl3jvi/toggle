@@ -82,10 +82,9 @@ class MainActivity : AppCompatActivity() {
             Log.e("Incoming call", "---------$accountID")
             val channelKey = "highPriority"
             Notify.with(receiverContext)
-
                 .content { // this: Payload.Content.Default
-                    title = "Incoming Call"
-                    text = displayName
+                    title = displayName
+                    text = "Is calling you."
                 }.alerting(channelKey) {
                     // Set (notification) channel importance to one of the IMPORTANCE constants.
                     channelImportance = Notify.IMPORTANCE_MAX

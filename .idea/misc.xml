@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/bottom_sheet_first.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/bottom_sheet_second.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/bottom_sheet_third.xml" value="0.187" />
+        <entry key="app/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_big_logo.xml" value="0.216" />
         <entry key="app/src/main/res/drawable/ic_end_call.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.1885" />
@@ -15,11 +16,14 @@
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/ic_mic.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.251" />
+        <entry key="app/src/main/res/drawable/ic_pause.xml" value="0.156" />
         <entry key="app/src/main/res/drawable/ic_people.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_phone_in.xml" value="0.161" />
         <entry key="app/src/main/res/drawable/ic_phone_out.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_simple_phone.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/input_background.xml" value="0.216" />
+        <entry key="app/src/main/res/drawable/search_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/search_icon.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_app_intro.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/activity_call.xml" value="0.2291220556745182" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.24270833333333333" />
@@ -40,6 +44,7 @@
         <entry key="app/src/main/res/layout/item_title.xml" value="0.26296296296296295" />
         <entry key="app/src/main/res/layout/item_to_do.xml" value="0.5" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.26785714285714285" />
+        <entry key="app/src/main/res/layout/people_fragment.xml" value="0.2433559145388223" />
         <entry key="app/src/main/res/layout/test_activity.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/to_do_fragment.xml" value="0.2618510158013544" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.24270833333333333" />

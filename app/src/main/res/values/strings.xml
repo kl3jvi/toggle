@@ -27,6 +27,9 @@
     <string name="details">Call Details</string>
     <string name="test_date">Feb 15, 8:28am</string>
     <string name="contact_info">Contact Information</string>
+    <string name="contacts">Contacts</string>
+    <string name="teammates">Teammates</string>
+    <string name="local">Local</string>
     <string name="call_info">Call Information</string>
     <string name="phone_number">+ %1s</string>
     <string name="recording">Recording</string>
@@ -45,4 +48,5 @@
     <string name="hashtag">hashtag</string>
     <string name="button_allow">Allow</string>
     <string name="button_deny">Deny</string>
+    <string name="search_hint">Search for a contact here …</string>
 </resources>

@@ -8,7 +8,6 @@ import com.squareup.moshi.JsonClass
 data class LoginResponseItem(
     @Json(name = "affectedRows")
     val affectedRows: Int?,
-//    "userid":290804,"userfname":"amit","userlname":"rajput","email":"amit123456@gmail.com","TuserID":359
     @Json(name = "changedRows")
     val changedRows: Int?,
     @Json(name = "fieldCount")

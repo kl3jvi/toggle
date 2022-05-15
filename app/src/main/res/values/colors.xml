@@ -10,6 +10,7 @@
 
     <color name="red">#f72c61</color>
     <color name="red_call">#FB5D39</color>
+    <color name="green_call">#FB5D39</color>
     <color name="violet">#9345fd</color>
     <color name="gold">#E08801</color>
 
@@ -29,8 +30,10 @@
 
 
     <color name="backgroundColor">#F9FAFA</color>
+    <color name="searchBackground">#ebeeee</color>
 
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
 </resources>
 
 
