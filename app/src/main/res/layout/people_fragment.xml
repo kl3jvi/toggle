@@ -75,6 +75,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frameLayout4"
+            app:selectionRequired="true"
             app:singleSelection="true">
 
             <com.google.android.material.button.MaterialButton
@@ -100,6 +101,7 @@
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.airbnb.epoxy.EpoxyRecyclerView
+            android:id="@+id/list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

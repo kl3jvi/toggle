@@ -6,9 +6,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.toggle.R
+import com.toggle.callHistory
+import com.toggle.cardDetails
+import com.toggle.contacts
 import com.toggle.databinding.PeopleFragmentBinding
+import com.toggle.utils.collectFlow
+import com.toggle.utils.randomId
 import com.toggle.utils.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PeopleFragment : Fragment(R.layout.people_fragment) {
 
     private val viewModel: PeopleViewModel by viewModels()
@@ -18,19 +25,39 @@ class PeopleFragment : Fragment(R.layout.people_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         /* A listener for the toggle button group. */
-        binding.toggleButtonGroup.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
+        binding.toggleButtonGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
             // Respond to button selection
             when (checkedId) {
                 R.id.contacts -> {
-                    Toast.makeText(requireContext(), "contacts", Toast.LENGTH_SHORT).show()
+                    collectFlow(viewModel.contactDetails) { list ->
+                        binding.list.withModels {
+                            list.forEach {
+                                contacts {
+                                    id(randomId())
+                                    contactDetails(it)
+
+                                }
+                            }
+                        }
+                    }
                 }
                 R.id.teammates -> {
-                    Toast.makeText(requireContext(), "teammates", Toast.LENGTH_SHORT).show()
+                    collectFlow(viewModel.test) { list ->
+                        binding.list.withModels {
+                            list.forEach {
+                                cardDetails {
+                                    id(randomId())
+
+                                }
+                            }
+                        }
+                    }
                 }
                 R.id.local -> {
                     Toast.makeText(requireContext(), "local", Toast.LENGTH_SHORT).show()
                 }
             }
+
         }
     }
 }

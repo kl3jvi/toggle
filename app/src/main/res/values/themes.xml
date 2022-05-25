@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/primaryTextColor</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="bottomSheetDialogTheme">@style/ModalBottomSheetDialog</item>
 
@@ -29,7 +29,7 @@
 
     <style name="DialpadNumberStyle">
         <item name="android:includeFontPadding">false</item>
-        <item name="android:textSize">@dimen/dialpad_text_size</item>
+        <item name="android:textSize">@dimen/dialpad_text_size</item>~
     </style>
     <style name="DialpadLetterStyle">
         <item name="android:textSize">@dimen/smaller_text_size</item>

@@ -8,7 +8,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CallerViewModel @Inject constructor(
     localStorage: LocalStorageImpl,
-//    private val endpoint: Endpoint
 ) : ViewModel() {
     val userSipId = localStorage.sipId
 
