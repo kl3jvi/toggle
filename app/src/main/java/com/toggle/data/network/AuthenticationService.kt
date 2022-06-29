@@ -2,18 +2,18 @@ package com.toggle.data.network
 
 import com.toggle.data.model.CallHistoryItem
 import com.toggle.data.model.ContactDetails
-import okhttp3.ResponseBody
+import com.toggle.data.model.LoginResponseItem
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface AuthenticationService {
 
-    @GET("reg/regAndLoginCheck")
-    suspend fun checkLogin(
+    @GET("reg/regAndLoginCheckAPP")
+    suspend fun login(
         @Query("apiAction") apiAction: String,
         @Query("emailID") email: String,
         @Query("passWord") password: String,
-    ): ResponseBody
+    ): List<LoginResponseItem>
 
     @GET("reg/userCalldataApp")
     suspend fun getCallHistory(

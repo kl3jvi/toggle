@@ -47,7 +47,10 @@ class PeopleFragment : Fragment(R.layout.people_fragment) {
                             list.forEach {
                                 cardDetails {
                                     id(randomId())
-
+                                    number(it.toString())
+                                    drawable(R.drawable.ic_people)
+                                    background(R.color.primaryColor)
+                                    isVisible(false)
                                 }
                             }
                         }
