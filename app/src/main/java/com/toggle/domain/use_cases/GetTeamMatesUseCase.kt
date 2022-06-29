@@ -5,15 +5,18 @@ import com.toggle.utils.Resource
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetContactDetailsUseCase @Inject constructor(
+class GetTeamMatesUseCase @Inject constructor(
     private val peopleRepository: PeopleRepository
 ) {
-    operator fun invoke(userId: String, agentID: String) = flow {
+    operator fun invoke(userId: String, teamUserOrNum: String) = flow {
         try {
-            val result = peopleRepository.getContactDetails(userId, agentID)
+            val result = peopleRepository.getTeamMates(
+                userId,
+                teamUserOrNum
+            )
             emit(Resource.Success(result))
         } catch (e: Exception) {
-            emit(Resource.Failed(e.localizedMessage ?: "Error Occurred!"))
+            e.printStackTrace()
         }
     }
 }

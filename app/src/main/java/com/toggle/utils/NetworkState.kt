@@ -36,12 +36,16 @@ sealed class State<T> {
          */
         fun <T> error(message: String) = Error<T>(message)
 
+
         /**
          * Returns [State] from [Resource]
          */
         fun <T> fromResource(resource: Resource<T>): State<T> = when (resource) {
             is Resource.Success -> success(resource.data)
             is Resource.Failed -> error(resource.message)
+
         }
     }
 }
+
+

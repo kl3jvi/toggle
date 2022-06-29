@@ -2,10 +2,8 @@ package com.toggle.data.repository
 
 import com.toggle.data.network.APIService
 import com.toggle.domain.repository.PeopleRepository
-import com.toggle.utils.Resource
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class PeopleRepositoryImpl @Inject constructor(
@@ -13,17 +11,19 @@ class PeopleRepositoryImpl @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) : PeopleRepository {
 
-
-    override fun getContactDetails(userId: String, agentID: String) = flow {
-        try {
-            val result = apiService.getContactDetails(MODE, userId, agentID)
-            emit(Resource.Success(result))
-        } catch (e: Exception) {
-            emit(Resource.Failed(e.localizedMessage ?: "Error Occurred!"))
+    override suspend fun getContactDetails(userId: String, agentID: String) =
+        withContext(ioDispatcher) {
+            apiService.getContactDetails(CONTACT_DETAILS_MODE, userId, agentID)
         }
-    }.flowOn(ioDispatcher)
+
+    override suspend fun getTeamMates(userId: String, teamUserOrNum: String) =
+        withContext(ioDispatcher) {
+            apiService.getTeamMates(TEAM_MATES_MODE, userId, teamUserOrNum)
+        }
 
     companion object {
-        const val MODE = "SELECTCONTACTDETAIL"
+        const val CONTACT_DETAILS_MODE = "SELECTCONTACTDETAIL"
+        const val TEAM_MATES_MODE = "SHOWTEAMSUSERWISE"
+
     }
 }

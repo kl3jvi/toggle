@@ -10,6 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import retrofit2.Response
 
 fun CoroutineScope.launchOnIo(
     start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -30,5 +32,23 @@ inline fun <T> LifecycleOwner.collectFlow(
                 collector(it)
             }
         }
+    }
+}
+
+suspend fun <T : Any> handleApi(
+    execute: suspend () -> Response<T>
+): Resource<T> {
+    return try {
+        val response = execute()
+        val body = response.body()
+        if (response.isSuccessful && body != null) {
+            Resource.Success(body)
+        } else {
+            Resource.Failed(message = response.message())
+        }
+    } catch (e: HttpException) {
+        Resource.Failed(message = e.message())
+    } catch (e: Exception) {
+        Resource.Failed(message = e.toString())
     }
 }

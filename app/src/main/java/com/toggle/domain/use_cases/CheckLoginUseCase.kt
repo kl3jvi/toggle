@@ -1,6 +1,5 @@
 package com.toggle.domain.use_cases
 
-import com.toggle.data.repository.AuthenticationRepositoryImpl
 import com.toggle.domain.repository.AuthenticationRepository
 import com.toggle.utils.Resource
 import kotlinx.coroutines.flow.flow
@@ -15,7 +14,7 @@ class CheckLoginUseCase @Inject constructor(
             emit(Resource.Success(result))
         } catch (e: Exception) {
             e.printStackTrace()
+            emit(Resource.Failed(e.message.toString()))
         }
-
     }
 }
