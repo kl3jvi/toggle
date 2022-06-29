@@ -1,20 +1,23 @@
 package com.toggle.data.repository
 
 import com.toggle.data.network.APIService
-import com.toggle.domain.repository.CallHistoryRepository
+import com.toggle.domain.repository.TeamMatesRepository
 import com.toggle.utils.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class CallHistoryRepositoryImpl @Inject constructor(
+class TeamMatesRepositoryImpl @Inject constructor(
     private val apiService: APIService,
     private val ioDispatcher: CoroutineDispatcher
-) : CallHistoryRepository {
-    override fun getCallHistory(userId: String, teamId: String) = flow {
+) : TeamMatesRepository {
+    override fun getTeamMates(
+        userId: String,
+        teamUserOrNum: String
+    ) = flow {
         try {
-            val result = apiService.getCallHistory(MODE, userId, teamId)
+            val result = apiService.getTeamMates(MODE, userId, teamUserOrNum)
             emit(Resource.Success(result))
         } catch (e: Exception) {
             emit(Resource.Failed(e.localizedMessage ?: "Error Occurred!"))
@@ -22,6 +25,6 @@ class CallHistoryRepositoryImpl @Inject constructor(
     }.flowOn(ioDispatcher)
 
     companion object {
-        const val MODE = "SHOWCDRDATAUSERIDAPP"
+        const val MODE = "SHOWTEAMSUSERWISE"
     }
 }

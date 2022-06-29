@@ -9,7 +9,6 @@ import com.toggle.domain.use_cases.GetContactDetailsUseCase
 import com.toggle.utils.Resource
 import com.toggle.utils.launchOnIo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
@@ -24,8 +23,8 @@ class PeopleViewModel @Inject constructor(
     val contactDetails = _contactDetails.asStateFlow()
 
 
-    private val _test = MutableStateFlow<List<Int>>(emptyList())
-    val test = _test.asStateFlow()
+    private val _teamMates = MutableStateFlow<List<Int>>(emptyList())
+    val teamMates = _teamMates.asStateFlow()
     private val TAG = "PeopleViewModel"
 
     init {
@@ -39,7 +38,7 @@ class PeopleViewModel @Inject constructor(
             repeat(100) {
                 i.add(it)
             }
-            _test.value = i
+            _teamMates.value = i
         }
     }
 

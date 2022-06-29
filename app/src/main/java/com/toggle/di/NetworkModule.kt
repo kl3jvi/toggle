@@ -1,6 +1,6 @@
 package com.toggle.di
 
-import com.toggle.data.network.AuthenticationService
+import com.toggle.data.network.APIService
 import com.toggle.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -38,8 +38,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAuthService(retrofit: Retrofit): AuthenticationService {
-        return retrofit.create(AuthenticationService::class.java)
+    fun provideApiService(retrofit: Retrofit): APIService {
+        return retrofit.create(APIService::class.java)
     }
 
 

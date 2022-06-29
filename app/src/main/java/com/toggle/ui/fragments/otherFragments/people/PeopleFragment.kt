@@ -1,12 +1,12 @@
 package com.toggle.ui.fragments.otherFragments.people
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.toggle.R
-import com.toggle.callHistory
 import com.toggle.cardDetails
 import com.toggle.contacts
 import com.toggle.databinding.PeopleFragmentBinding
@@ -25,8 +25,9 @@ class PeopleFragment : Fragment(R.layout.people_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         /* A listener for the toggle button group. */
+        fillContacts()
         binding.toggleButtonGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            // Respond to button selection
+            Log.e("Error", "$group, $checkedId, $isChecked")
             when (checkedId) {
                 R.id.contacts -> {
                     collectFlow(viewModel.contactDetails) { list ->
@@ -42,7 +43,7 @@ class PeopleFragment : Fragment(R.layout.people_fragment) {
                     }
                 }
                 R.id.teammates -> {
-                    collectFlow(viewModel.test) { list ->
+                    collectFlow(viewModel.teamMates) { list ->
                         binding.list.withModels {
                             list.forEach {
                                 cardDetails {
@@ -60,7 +61,19 @@ class PeopleFragment : Fragment(R.layout.people_fragment) {
                     Toast.makeText(requireContext(), "local", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
 
+    private fun fillContacts() {
+        collectFlow(viewModel.contactDetails) { list ->
+            binding.list.withModels {
+                list.forEach {
+                    contacts {
+                        id(randomId())
+                        contactDetails(it)
+                    }
+                }
+            }
         }
     }
 }
