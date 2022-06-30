@@ -16,6 +16,10 @@
             type="Integer" />
 
         <variable
+            name="image"
+            type="String" />
+
+        <variable
             name="background"
             type="Integer" />
 
@@ -59,10 +63,11 @@
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/dp_8"
+
                     android:adjustViewBounds="true"
                     android:background="@android:color/transparent"
-                    app:drawable="@{drawable}" />
+                    app:drawable="@{drawable}"
+                    app:imageUrl="@{image}" />
 
             </androidx.cardview.widget.CardView>
 

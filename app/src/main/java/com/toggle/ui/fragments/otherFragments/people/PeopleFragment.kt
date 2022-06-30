@@ -48,9 +48,10 @@ class PeopleFragment : Fragment(R.layout.people_fragment) {
                             list.forEach {
                                 cardDetails {
                                     id(randomId())
-                                    number(it.toString())
-                                    drawable(R.drawable.ic_people)
+                                    number(it.teamName)
+                                    image(it.teamName.avatarUrl().replace("+", ""))
                                     background(R.color.primaryColor)
+                                    details(it.teamID.toString())
                                     isVisible(false)
                                 }
                             }
@@ -64,6 +65,7 @@ class PeopleFragment : Fragment(R.layout.people_fragment) {
         }
     }
 
+
     private fun fillContacts() {
         collectFlow(viewModel.contactDetails) { list ->
             binding.list.withModels {
@@ -76,4 +78,8 @@ class PeopleFragment : Fragment(R.layout.people_fragment) {
             }
         }
     }
+}
+
+private fun String.avatarUrl(): String {
+    return "https://ui-avatars.com/api/?background=random&format=svg&bold=true&name=$this"
 }

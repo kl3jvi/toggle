@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import coil.request.CachePolicy
 import com.toggle.R
+import com.toggle.utils.loadUrl
 
 object ViewBinding {
     /**
@@ -57,6 +58,19 @@ object ViewBinding {
         image.load(drawable) {
             crossfade(true)
             diskCachePolicy(CachePolicy.ENABLED)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("imageUrl")
+    fun setImageUrl(image: ImageView, uri: String) {
+        if (uri.contains("svg")) {
+            image.loadUrl(uri)
+        } else {
+            image.load(uri) {
+                crossfade(true)
+                diskCachePolicy(CachePolicy.ENABLED)
+            }
         }
     }
 

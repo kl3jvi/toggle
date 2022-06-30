@@ -64,7 +64,7 @@ class CallActivity : AppCompatActivity(), View.OnClickListener {
         mIsVideoConference = intent.getBooleanExtra("isVideoConference", false)
         showLayout(mType)
         binding.textViewPeer.text = String.format("%s\n%s", mRemoteUri, mDisplayName)
-        binding.tvOutCallInfo.text = String.format("You are calling %s", mNumber)
+        binding.tvOutCallNumber.text = mNumber.toString()
     }
 
     fun startActivityIn(

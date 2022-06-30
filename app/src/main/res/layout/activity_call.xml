@@ -20,13 +20,14 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <TextView
             android:id="@+id/incomingCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:background="@color/transparent"
             android:fontFamily="@font/medium_font"
             android:text="Incoming Call"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -40,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
+            android:background="@color/transparent"
             android:gravity="center_horizontal"
             android:text="Peer URI"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -53,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
+            android:background="@color/transparent"
             android:gravity="center"
             android:text="early"
             android:textColor="@color/white"
@@ -65,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@color/transparent"
             app:cardBackgroundColor="#800D83DA"
             app:cardCornerRadius="@dimen/dp_8"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:background="@color/transparent"
             android:fontFamily="@font/medium_font"
             android:text="Accept"
             android:textColor="@color/white"
@@ -126,6 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:background="@color/transparent"
             android:fontFamily="@font/medium_font"
             android:text="Decline"
             android:textColor="@color/white"
@@ -168,6 +174,8 @@
         android:id="@+id/layoutOutCall"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
+        android:background="@drawable/background_gradient"
         android:gravity="center"
         android:visibility="gone"
         tools:visibility="gone">
@@ -177,6 +185,7 @@
             android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
+            android:background="@color/transparent"
             android:fontFamily="@font/medium_font"
             android:gravity="center_horizontal"
             android:text="Ringing"
@@ -192,15 +201,16 @@
             android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@color/transparent"
             android:fontFamily="@font/light_font"
             android:gravity="center_horizontal"
-            android:text="+355 694 518 8882"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOutCallInfo" />
+            app:layout_constraintTop_toBottomOf="@+id/tvOutCallInfo"
+            tools:text="+355 694 518 8882" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
@@ -236,6 +246,8 @@
         android:id="@+id/layoutConnected"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
+        android:background="@drawable/background_gradient"
         android:visibility="visible"
         tools:visibility="gone">
 

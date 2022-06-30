@@ -11,7 +11,6 @@ import com.toggle.R
 import com.toggle.databinding.CallerFragmentBinding
 import com.toggle.utils.HOST
 import com.toggle.utils.NetworkUtils.isConnectedToInternet
-import com.toggle.utils.PORT
 import com.toggle.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import net.gotev.sipservice.SipAccountData
@@ -95,6 +94,7 @@ class CallerFragment : Fragment(R.layout.caller_fragment) {
             )
         } catch (e: Exception) {
             e.printStackTrace()
+            showSnack("Error occurred and couldn't call.")
         }
     }
 

@@ -35,8 +35,9 @@ interface APIService {
     @GET("reg/createTeamUserAPP")
     suspend fun getTeamMates(
         @Query("Mode") apiAction: String,
-        @Query("UserId") userId: String,
+        @Query("UserID") userId: String,
         @Query("TeamUserOrNum") teamUserOrNum: String,
     ): List<TeamMatesItem>
+
 
 }

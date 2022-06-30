@@ -17,6 +17,7 @@ class GetTeamMatesUseCase @Inject constructor(
             emit(Resource.Success(result))
         } catch (e: Exception) {
             e.printStackTrace()
+            emit(Resource.Failed(e.message.toString()))
         }
     }
 }
